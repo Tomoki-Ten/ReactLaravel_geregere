@@ -5,20 +5,20 @@ class Routes {
 
   // Backend Route
   // Sanctum
-  static readonly SANCTUM = Routes.BACKEND_URL + "/sanctum/csrf-cookie";
+  static readonly SANCTUM: string = Routes.BACKEND_URL + "/sanctum/csrf-cookie";
   // Login
-  static readonly LOGIN = Routes.BACKEND_URL + "/login";
+  static readonly LOGIN: string = Routes.BACKEND_URL + "/login";
   // SPA
-  static readonly AUTH_CONFIRM = Routes.BACKEND_URL + "/auth/confirm";
-  static readonly POST_CREATE = Routes.BACKEND_URL + "/auth/post/create";
+  static readonly AUTH_CONFIRM: string = Routes.BACKEND_URL + "/auth/confirm";
+  static readonly POST_CREATE: string = Routes.BACKEND_URL + "/auth/post/create";
 
   // Frontend Route
-  static readonly INDEX = "/";
+  static readonly INDEX: string = "/";
   // User
-  static readonly DASHBOARD = "/pages/user/dashboard";
+  static readonly DASHBOARD: string = "/pages/user/dashboard";
   // Post
-  static readonly POST_LIST = "/pages/post/list";
-  static readonly CREATE = "/pages/post/create";
+  static readonly POST_LIST: string = "/pages/post/list";
+  static readonly CREATE: string = "/pages/post/create";
 }
 
 export default Routes;

@@ -6,7 +6,7 @@ import LayoutUnauth from "./components/layouts/LayoutUnauth";
 import Routes from "./routes/routes";
 import AppTitle from "./components/AppTitle";
 
-const Login: React.VFC = (): JSX.Element => {
+const Login = (): JSX.Element => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 

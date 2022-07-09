@@ -54,7 +54,7 @@ const handleClickTest = () => {
   test();
 };
 
-const Add = () => {
+const Add = (): JSX.Element => {
   const page_title: string = "Add Page";
   return (
     <LayoutAuth>

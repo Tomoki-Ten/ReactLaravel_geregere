@@ -9,12 +9,19 @@ interface Props {
   clickEvent: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TBody: React.VFC<Props> = ({
-  posts,
-  deletePost = undefined,
-  readThisPost,
-  clickEvent,
-}): JSX.Element => {
+/**
+ * 
+ * @param props 
+ * @returns 
+ */
+const TBody = (props: Props): JSX.Element => {
+  const {
+    posts,
+    deletePost = undefined,
+    readThisPost,
+    clickEvent,
+  } = props;
+
   const text: string = "test_text";
   // Text
   const clickText = (text: string) => {
@@ -27,7 +34,7 @@ const TBody: React.VFC<Props> = ({
     readThisPost(post);
   };
   // Delete
-  const clickDelete = (post_id: number) => {
+  const clickDelete = (post_id?: number) => {
     console.log("clickDelete");
     if (deletePost != undefined) {
       deletePost(post_id);
@@ -89,35 +96,6 @@ const TBody: React.VFC<Props> = ({
               >
                 Event
               </CButton>
-              {/* <CButton component="input" type="button" color="primary">
-                TEXT
-              </CButton> */}
-              {/*
-              <CButton
-                component="input"
-                type="button"
-                color="primary"
-                onClick={() => clickRead({ post })}
-              >
-                READ
-              </CButton>
-              <CButton
-                component="input"
-                type="button"
-                color="primary"
-                onClick={() => clickDelete(post.id)}
-              >
-                DELETE
-              </CButton>
-              <CButton
-                component="input"
-                type="button"
-                color="primary"
-                onClick={(e) => clickEventChild(e)}
-                value="mai"
-              >
-                EVENT
-              </CButton> */}
             </td>
           </tr>
         );
