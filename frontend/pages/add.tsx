@@ -1,6 +1,6 @@
 import axios from "axios";
-import AppTitle from "./components/AppTitle";
-import LayoutAuth from "./components/layouts/LayoutAuth";
+import AppTitle from "../components/AppTitle";
+import LayoutAuth from "../components/layouts/LayoutAuth";
 
 const login = () => {
   axios

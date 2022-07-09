@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
-// import type { NextPage } from "next";
-import AppTitle from "../../components/AppTitle";
-import TBody from "../../components/table/TBody";
-import LayoutAuth from "../../components/layouts/LayoutAuth";
+import React, { useState, useEffect } from "react";
+
+import AppTitle from "../../../components/AppTitle";
+import LayoutAuth from "../../../components/layouts/LayoutAuth";
+import TBody from "../../../components/table/TBody";
 
 export interface Post {
   id: number;
@@ -44,33 +44,19 @@ const dummyPosts: Post[] = [
   },
 ];
 
-const Dashboard = (): JSX.Element => {
-  const page_title: string = "Page: Dashboard";
+const List = (): JSX.Element => {
+  const pageTitle: string = "Post List";
   const [posts, setPosts] = useState<Post[]>(dummyPosts);
 
-  // Read
-  const readThisPost = (post: Post) => {
-    console.log("readThisPost");
-    console.log(post);
-  };
-  // Delete
-  const deletePost = (post_id: number) => {
-    console.log("deletePost");
-    let updated_posts: Post[] = posts.filter((exist_post) => {
-      if (post_id != exist_post.id) {
-        return exist_post;
-      }
-    });
-    setPosts(updated_posts);
-  };
+  // const deletePost = () => {};
 
-  const clickEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("clickEvent: Parent: value: ", e.target.value);
-  };
+  const readThisPost = () => {};
+
+  const clickEvent = () => {};
 
   return (
     <LayoutAuth>
-      <AppTitle page_title={page_title} />
+      <AppTitle page_title={pageTitle} />
       <div>
         <table className="table">
           <thead>
@@ -87,7 +73,7 @@ const Dashboard = (): JSX.Element => {
           </thead>
           <TBody
             posts={posts}
-            deletePost={deletePost}
+            deletePost={undefined}
             readThisPost={readThisPost}
             clickEvent={clickEvent}
           />
@@ -97,4 +83,4 @@ const Dashboard = (): JSX.Element => {
   );
 };
 
-export default Dashboard;
+export default List;

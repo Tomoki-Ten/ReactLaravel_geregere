@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-import LayoutUnauth from "./components/layouts/LayoutUnauth";
-import Routes from "./routes/routes";
-import AppTitle from "./components/AppTitle";
+import LayoutUnauth from "../components/layouts/LayoutUnauth";
+import Routes from "../routes/routes";
+import AppTitle from "../components/AppTitle";
 
 const Login = (): JSX.Element => {
   const [userName, setUserName] = useState<string>("");
@@ -14,7 +14,7 @@ const Login = (): JSX.Element => {
   // ページのタイトル
   const page_title: string = String(process.env.NEXT_PUBLIC_APP_TITLE);
 
-  const lb_user_name: string = "User Name:";
+  const lb_user_name: string = "UserName:";
   const lb_password: string = "Password";
   const inp_type_text: string = "text";
   const inp_type_password: string = "password";
