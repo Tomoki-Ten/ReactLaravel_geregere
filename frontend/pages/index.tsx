@@ -14,8 +14,8 @@ const Login = (): JSX.Element => {
   // ページのタイトル
   const page_title: string = String(process.env.NEXT_PUBLIC_APP_TITLE);
 
-  const lb_user_name: string = "UserName:";
-  const lb_password: string = "Password";
+  const lb_user_name: string = "User Name: ";
+  const lb_password: string = "Password: ";
   const inp_type_text: string = "text";
   const inp_type_password: string = "password";
 
