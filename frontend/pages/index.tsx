@@ -6,6 +6,9 @@ import LayoutUnauth from "../components/layouts/LayoutUnauth";
 import Routes from "../routes/routes";
 import AppTitle from "../components/AppTitle";
 
+// Material UI
+import Button from "@mui/material/Button";
+
 const Login = (): JSX.Element => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -75,9 +78,9 @@ const Login = (): JSX.Element => {
             />
           </div>
           <div>
-            <button type="button" onClick={handleLogin}>
-              LOGIN
-            </button>
+            {/* <button type="button" onClick={handleLogin}> */}
+            <Button variant="contained">LOGIN</Button>
+            {/* </button> */}
           </div>
         </form>
       </div>
