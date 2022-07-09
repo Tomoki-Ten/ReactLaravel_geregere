@@ -1,14 +1,12 @@
-// import Nav from "../navs/Nav";
-
 interface Props {
   contents: string;
 }
 
-const Header: React.VFC<Props> = (props) => {
+const Header = (props: Props): JSX.Element => {
+  const {contents} = props;
   return (
     <div>
-      <h1>{props.contents}</h1>
-      {/* <Nav /> */}
+      <h1>{contents}</h1>
     </div>
   );
 };

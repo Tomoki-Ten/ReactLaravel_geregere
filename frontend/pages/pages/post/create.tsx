@@ -4,7 +4,7 @@ import Routes from "../../routes/routes";
 import AppTitle from "../../components/AppTitle";
 import LayoutAuth from "../../components/layouts/LayoutAuth";
 
-const Create = () => {
+const Create = (): JSX.Element => {
   const page_title: string = "Create Page";
 
   const [inputTitle, setInputTitle] = useState<string>("");

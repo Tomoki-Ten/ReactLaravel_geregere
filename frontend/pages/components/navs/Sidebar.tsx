@@ -16,7 +16,7 @@ import { CSidebarToggler } from "@coreui/react";
 import { CSidebarHeader } from "@coreui/react";
 import { CSidebarFooter } from "@coreui/react";
 
-const Sidebar: React.VFC = () => {
+const Sidebar= (): JSX.Element => {
   return (
     <CSidebar className="h-100">
       <CSidebarBrand>Sidebar Brand</CSidebarBrand>

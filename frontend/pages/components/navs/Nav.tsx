@@ -2,7 +2,7 @@ import Link, { LinkProps } from "next/link";
 
 import Routes from "../../routes/routes";
 
-const Nav: React.VFC = () => {
+const Nav = (): JSX.Element => {
   return (
     <div>
       <div>

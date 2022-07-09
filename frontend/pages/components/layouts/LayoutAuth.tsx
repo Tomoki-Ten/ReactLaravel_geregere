@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import type { LoginStatus } from "../../../store/index";
 import Head from "next/head";
-import Header from "./Header";
+// import Header from "./Header";
 import Sidebar from "../navs/Sidebar";
 import Routes from "../../routes/routes";
 
@@ -12,7 +12,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const LayoutAuth: React.VFC<Props> = (props): JSX.Element => {
+const LayoutAuth = (props: Props): JSX.Element => {
   const header_contents: string = "Applicaton Header";
   const router = useRouter();
   /* Redux */
@@ -36,7 +36,6 @@ const LayoutAuth: React.VFC<Props> = (props): JSX.Element => {
   }, []);
 
   if (login) {
-    // const style = "100vh";
     return (
       <div style={{ height: "100vh" }}>
         <Head>

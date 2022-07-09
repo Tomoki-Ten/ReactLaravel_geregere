@@ -44,7 +44,7 @@ const dummyPosts: Post[] = [
   },
 ];
 
-const Dashboard: React.VFC = (): JSX.Element => {
+const Dashboard = (): JSX.Element => {
   const page_title: string = "Page: Dashboard";
   const [posts, setPosts] = useState<Post[]>(dummyPosts);
 

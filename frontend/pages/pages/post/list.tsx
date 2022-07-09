@@ -44,7 +44,7 @@ const dummyPosts: Post[] = [
   },
 ];
 
-const List: React.VFC = (): JSX.Element => {
+const List = (): JSX.Element => {
   const pageTitle: string = "Post List";
   const [posts, setPosts] = useState<Post[]>(dummyPosts);
 
