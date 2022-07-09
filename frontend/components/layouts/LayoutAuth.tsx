@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import type { LoginStatus } from "../../../store/index";
+import type { LoginStatus } from "../../store/index";
 import Head from "next/head";
 // import Header from "./Header";
 import Sidebar from "../navs/Sidebar";

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Routes from "../../routes/routes";
-import AppTitle from "../../components/AppTitle";
-import LayoutAuth from "../../components/layouts/LayoutAuth";
+import Routes from "../../../routes/routes";
+import AppTitle from "../../../components/AppTitle";
+import LayoutAuth from "../../../components/layouts/LayoutAuth";
 
 const Create = (): JSX.Element => {
   const page_title: string = "Create Page";

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-
-import AppTitle from "../../components/AppTitle";
-import LayoutAuth from "../../components/layouts/LayoutAuth";
-import TBody from "../../components/table/TBody";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+// import type { NextPage } from "next";
+import AppTitle from "../../../components/AppTitle";
+import TBody from "../../../components/table/TBody";
+import LayoutAuth from "../../../components/layouts/LayoutAuth";
 
 export interface Post {
   id: number;
@@ -44,19 +44,33 @@ const dummyPosts: Post[] = [
   },
 ];
 
-const List = (): JSX.Element => {
-  const pageTitle: string = "Post List";
+const Dashboard = (): JSX.Element => {
+  const page_title: string = "Page: Dashboard";
   const [posts, setPosts] = useState<Post[]>(dummyPosts);
 
-  // const deletePost = () => {};
+  // Read
+  const readThisPost = (post: Post) => {
+    console.log("readThisPost");
+    console.log(post);
+  };
+  // Delete
+  const deletePost = (post_id: number) => {
+    console.log("deletePost");
+    let updated_posts: Post[] = posts.filter((exist_post) => {
+      if (post_id != exist_post.id) {
+        return exist_post;
+      }
+    });
+    setPosts(updated_posts);
+  };
 
-  const readThisPost = () => {};
-
-  const clickEvent = () => {};
+  const clickEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("clickEvent: Parent: value: ", e.target.value);
+  };
 
   return (
     <LayoutAuth>
-      <AppTitle page_title={pageTitle} />
+      <AppTitle page_title={page_title} />
       <div>
         <table className="table">
           <thead>
@@ -73,7 +87,7 @@ const List = (): JSX.Element => {
           </thead>
           <TBody
             posts={posts}
-            deletePost={undefined}
+            deletePost={deletePost}
             readThisPost={readThisPost}
             clickEvent={clickEvent}
           />
@@ -83,4 +97,4 @@ const List = (): JSX.Element => {
   );
 };
 
-export default List;
+export default Dashboard;
