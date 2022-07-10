@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Avatar,
   Box,
@@ -12,11 +13,21 @@ import {
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 // import { MoreVertIcon } from "@mui/icons"
-import React from "react";
+import * as COMMON_W from "../../constant/word/common";
+import * as ERROR_W from "../../constant/word/error";
 
 const CardLoginSample = (): JSX.Element => {
+  //
   const isErrorLoginId: boolean = false;
   const isErrorPassword: boolean = true;
+
+  //
+  const helperTextLoginId: string = isErrorLoginId
+    ? `${COMMON_W.LOGIN}${ERROR_W.REQUIRED}`
+    : "";
+  const helperTextPassword: string = isErrorPassword
+    ? `${COMMON_W.PASSWORD}${ERROR_W.REQUIRED}`
+    : "";
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -43,20 +54,20 @@ const CardLoginSample = (): JSX.Element => {
       <CardContent>
         <TextField
           error={isErrorLoginId}
-          helperText="Login ID is Required Value."
+          helperText={helperTextLoginId}
           fullWidth
           id="loginId"
-          label="Login ID"
+          label={`${COMMON_W.LOGIN_ID}`}
           variant="outlined"
           margin="dense"
         />
         <TextField
           error={isErrorPassword}
-          helperText="Password is Required Value."
+          helperText={helperTextPassword}
           fullWidth
           type="password"
           id="password"
-          label="Password"
+          label={`${COMMON_W.PASSWORD}`}
           variant="outlined"
           margin="dense"
         />
@@ -77,7 +88,7 @@ const CardLoginSample = (): JSX.Element => {
               console.log("Hey!!");
             }}
           >
-            LOGIN
+            {COMMON_W.LOGIN}
           </Button>
         </Box>
         {/* <Typography variant="body2" color="text.secondary">
