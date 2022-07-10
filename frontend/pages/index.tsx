@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+// Material UI
+import Button from "@mui/material/Button";
 
 import LayoutUnauth from "../components/layouts/LayoutUnauth";
 import Routes from "../routes/routes";
 import AppTitle from "../components/AppTitle";
-
-// Material UI
-import Button from "@mui/material/Button";
+import ButtonSample from "../components/buttons/sample_button";
+import CardLoginSample from "../components/cards/sample_card";
 
 const Login = (): JSX.Element => {
   const [userName, setUserName] = useState<string>("");
@@ -63,27 +64,7 @@ const Login = (): JSX.Element => {
 
   return (
     <LayoutUnauth>
-      <AppTitle page_title={page_title} />
-      <div>
-        <form action="" method="POST" name="login">
-          <div>
-            <label htmlFor="">{lb_user_name}</label>
-            <input type={inp_type_text} onChange={(e) => handleUserName(e)} />
-          </div>
-          <div>
-            <label htmlFor="">{lb_password}</label>
-            <input
-              type={inp_type_password}
-              onChange={(e) => handlePassword(e)}
-            />
-          </div>
-          <div>
-            {/* <button type="button" onClick={handleLogin}> */}
-            <Button variant="contained">LOGIN</Button>
-            {/* </button> */}
-          </div>
-        </form>
-      </div>
+      <CardLoginSample />
     </LayoutUnauth>
   );
 };

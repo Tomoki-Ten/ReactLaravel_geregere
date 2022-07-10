@@ -1,12 +1,13 @@
 import React from "react";
 import Head from "next/head";
+import { Box } from "@mui/material";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const LayoutUnauth = (props: Props): JSX.Element => {
-  const {children} = props;
+  const { children } = props;
   return (
     <>
       <Head>
@@ -14,7 +15,17 @@ const LayoutUnauth = (props: Props): JSX.Element => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Layout Title</title>
       </Head>
-      <main>{children}</main>
+      <main>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            pt: 15,
+          }}
+        >
+          {children}
+        </Box>
+      </main>
     </>
   );
 };
