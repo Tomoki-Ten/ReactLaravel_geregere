@@ -10,15 +10,17 @@ class Routes {
   static readonly LOGIN: string = Routes.BACKEND_URL + "/login";
   // SPA
   static readonly AUTH_CONFIRM: string = Routes.BACKEND_URL + "/auth/confirm";
-  static readonly POST_CREATE: string = Routes.BACKEND_URL + "/auth/post/create";
+  static readonly POST_CREATE: string =
+    Routes.BACKEND_URL + "/auth/post/create";
 
   // Frontend Route
+  static readonly APP = "/app";
   static readonly INDEX: string = "/";
   // User
-  static readonly DASHBOARD: string = "/pages/user/dashboard";
+  static readonly DASHBOARD: string = Routes.APP + "/user/dashboard";
   // Post
-  static readonly POST_LIST: string = "/pages/post/list";
-  static readonly CREATE: string = "/pages/post/create";
+  static readonly POST_LIST: string = Routes.APP + "/post/list";
+  static readonly CREATE: string = Routes.APP + "/post/create";
 }
 
 export default Routes;

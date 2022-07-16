@@ -1,50 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import {
-  Avatar,
   Box,
   Button,
   Card,
-  CardHeader,
   CardMedia,
   CardContent,
-  IconButton,
-  Typography,
   TextField,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
-// import { MoreVertIcon } from "@mui/icons"
+import { useRouter } from "next/router";
+import Routes from "../../routes/routes";
 import * as COMMON_W from "../../constant/word/common";
 import * as ERROR_W from "../../constant/word/error";
 
 const CardLoginSample = (): JSX.Element => {
+  // Router
+  const router = useRouter();
+  // useState
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  /**
+   * Validation
+   */
+  const errorLoginIdExists: boolean = false;
+  const errorPasswordExists: boolean = false;
   //
-  const isErrorLoginId: boolean = false;
-  const isErrorPassword: boolean = true;
-
-  //
-  const helperTextLoginId: string = isErrorLoginId
+  const helperTextLoginId: string = errorLoginIdExists
     ? `${COMMON_W.LOGIN}${ERROR_W.REQUIRED}`
     : "";
-  const helperTextPassword: string = isErrorPassword
+  const helperTextPassword: string = errorPasswordExists
     ? `${COMMON_W.PASSWORD}${ERROR_W.REQUIRED}`
     : "";
+  /**
+   * Handles
+   */
+  const handleUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value);
+  };
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+  const handleLogin = () => {
+    axios
+      .get(Routes.SANCTUM, { withCredentials: true })
+      .then((response) => {
+        console.log(response);
+        axios
+          .post(
+            Routes.LOGIN,
+            {
+              name: userName,
+              password: password,
+            },
+            { withCredentials: true }
+          )
+          .then((response) => {
+            console.log(response);
+            if (response.data.status == "login") {
+              console.log("login");
+              router.push(Routes.DASHBOARD);
+            }
+          })
+          .catch((response) => {
+            console.log(response);
+          });
+      })
+      .catch((response) => {
+        console.log(response);
+      });
+  };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      {/* <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="sample">
-            S
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Card Header Title"
-        subheader="Card Sub Header, 07, 10, 2022"
-      /> */}
       <CardMedia
         component="img"
         height="194"
@@ -53,16 +80,17 @@ const CardLoginSample = (): JSX.Element => {
       />
       <CardContent>
         <TextField
-          error={isErrorLoginId}
+          error={errorLoginIdExists}
           helperText={helperTextLoginId}
           fullWidth
           id="loginId"
           label={`${COMMON_W.LOGIN_ID}`}
           variant="outlined"
           margin="dense"
+          onChange={(e) => handleUserName(e)}
         />
         <TextField
-          error={isErrorPassword}
+          error={errorPasswordExists}
           helperText={helperTextPassword}
           fullWidth
           type="password"
@@ -70,6 +98,7 @@ const CardLoginSample = (): JSX.Element => {
           label={`${COMMON_W.PASSWORD}`}
           variant="outlined"
           margin="dense"
+          onChange={(e) => handlePassword(e)}
         />
         <Box
           sx={{
@@ -84,19 +113,12 @@ const CardLoginSample = (): JSX.Element => {
             variant="outlined"
             color="primary"
             onClick={() => {
-              alert("Hey!!");
-              console.log("Hey!!");
+              handleLogin();
             }}
           >
             {COMMON_W.LOGIN}
           </Button>
         </Box>
-        {/* <Typography variant="body2" color="text.secondary">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi illum
-          fugit in ipsa rerum culpa, quis magni unde porro laudantium, velit
-          nulla voluptatum nisi? Eum temporibus quidem impedit perspiciatis
-          voluptatibus?
-        </Typography> */}
       </CardContent>
     </Card>
   );
