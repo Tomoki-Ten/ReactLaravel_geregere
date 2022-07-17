@@ -10,41 +10,31 @@ interface Props {
 }
 
 /**
- * 
- * @param props 
- * @returns 
+ *
+ * @param props
+ * @returns
  */
 const TBody = (props: Props): JSX.Element => {
-  const {
-    posts,
-    deletePost = undefined,
-    readThisPost,
-    clickEvent,
-  } = props;
+  const { posts, deletePost = undefined, readThisPost, clickEvent } = props;
 
   const text: string = "test_text";
   // Text
   const clickText = (text: string) => {
-    console.log("clickText");
-    console.log(text);
+    console.log("@clickText: ", text);
   };
   // Read
   const clickRead = (post: any) => {
-    console.log("clickRead");
     readThisPost(post);
   };
   // Delete
   const clickDelete = (post_id?: number) => {
-    console.log("clickDelete");
     if (deletePost != undefined) {
       deletePost(post_id);
     }
   };
   // Event
   const clickEventChild = (e: any) => {
-    console.log("clickEventChild");
     clickEvent(e);
-    // console.log(e.target.value);
   };
 
   return (
@@ -54,12 +44,24 @@ const TBody = (props: Props): JSX.Element => {
         return (
           <tr key={key}>
             <th scope="row">{post.id}</th>
-            <td>{post.user}</td>
-            <td>{post.title}</td>
-            <td>{post.text}</td>
-            <td>{post.check}</td>
-            <td>{post.bool}</td>
-            <td>{post.created_at}</td>
+            <td>
+              <p>{post.user}</p>
+            </td>
+            <td>
+              <p>{post.title}</p>
+            </td>
+            <td>
+              <p>{post.text}</p>
+            </td>
+            <td>
+              <p>{post.check}</p>
+            </td>
+            <td>
+              <p>{post.bool}</p>
+            </td>
+            <td>
+              <p>{post.created_at}</p>
+            </td>
             <td>
               <CButton
                 color="primary"

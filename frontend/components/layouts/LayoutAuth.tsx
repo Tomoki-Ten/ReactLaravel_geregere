@@ -37,7 +37,7 @@ const LayoutAuth = (props: Props): JSX.Element => {
 
   if (login) {
     return (
-      <div style={{ height: "100vh" }}>
+      <div style={{ height: "100vh", width: "100%" }}>
         <Head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta
@@ -49,12 +49,10 @@ const LayoutAuth = (props: Props): JSX.Element => {
         {/* <header>
           <Header contents={header_contents} />
         </header> */}
-        <div className="d-flex h-100">
+        <main className="d-flex w-100">
           <Sidebar />
-          <div>
-            <main>{props.children}</main>
-          </div>
-        </div>
+          {props.children}
+        </main>
       </div>
     );
   } else {

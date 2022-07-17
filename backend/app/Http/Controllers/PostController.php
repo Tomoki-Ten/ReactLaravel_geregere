@@ -7,6 +7,15 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    public function list()
+    {
+        \Log::debug("@list");
+        $model = new Post();
+        $post = $model->query()->select('*')->get();
+        \Log::debug($post);
+        return $post;
+    }
+    
     public function create(Request $request)
     {
         \Log::debug("request");

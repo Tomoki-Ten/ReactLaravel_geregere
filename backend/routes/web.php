@@ -28,7 +28,8 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'auth'], function() 
     Route::get('/confirm', [AuthController::class, 'confirm'])->name('confirm');
     // Post Routes
     Route::group(['prefix' => 'post'], function() {
-        Route::post('/create', [PostController::class, 'create'])->name('create');
+        Route::post('/create',   [PostController::class, 'create'])->name('create');
+        Route::get('/list', [PostController::class, 'list']);
     });
 });
 

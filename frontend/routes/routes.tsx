@@ -13,13 +13,16 @@ class Routes {
   static readonly POST_CREATE: string =
     Routes.BACKEND_URL + "/auth/post/create";
 
+  static readonly POST_LIST: string = Routes.BACKEND_URL + "/auth/post/list";
+
   // Frontend Route
-  static readonly APP = "/app";
   static readonly INDEX: string = "/";
+  static readonly APP: string = "/app";
   // User
   static readonly DASHBOARD: string = Routes.APP + "/user/dashboard";
   // Post
-  static readonly POST_LIST: string = Routes.APP + "/post/list";
+  // static readonly POST_LIST: string = Routes.APP + "/post/list";
+  static readonly POST_DASHBOARD: string = Routes.APP + "/post/dashboard";
   static readonly CREATE: string = Routes.APP + "/post/create";
 }
 

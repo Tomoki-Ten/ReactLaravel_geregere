@@ -3,6 +3,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import AppTitle from "../../../components/AppTitle";
 import TBody from "../../../components/table/TBody";
 import LayoutAuth from "../../../components/layouts/LayoutAuth";
+import { cibSonos } from "@coreui/icons";
 
 export interface Post {
   id: number;
@@ -14,39 +15,50 @@ export interface Post {
   created_at: string;
 }
 
-const dummyPosts: Post[] = [
-  {
-    id: 0,
-    user: "Chuck",
-    title: "Eat a lot",
-    text: "text example",
-    check: 1,
-    bool: true,
-    created_at: "2022-02-11",
-  },
-  {
-    id: 1,
-    user: "UserName-00",
-    title: "Post Title 00",
-    text: "Text Exaple 00",
-    check: 1,
-    bool: true,
-    created_at: "2022-02-11",
-  },
-  {
-    id: 2,
-    user: "UserName-01",
-    title: "Post Title 01",
-    text: "Text Exaple 01",
-    check: 1,
-    bool: true,
-    created_at: "2022-02-11",
-  },
-];
+// const dummyPosts: Post[] = [
+//   {
+//     id: 0,
+//     user: "Chuck",
+//     title: "Eat a lot",
+//     text: "text example",
+//     check: 1,
+//     bool: true,
+//     created_at: "2022-02-11",
+//   },
+//   {
+//     id: 1,
+//     user: "UserName-00",
+//     title: "Post Title 00",
+//     text: "Text Exaple 00",
+//     check: 1,
+//     bool: true,
+//     created_at: "2022-02-11",
+//   },
+//   {
+//     id: 2,
+//     user: "UserName-01",
+//     title: "Post Title 01",
+//     text: "Text Exaple 01",
+//     check: 1,
+//     bool: true,
+//     created_at: "2022-02-11",
+//   },
+// ];
 
 const Dashboard = (): JSX.Element => {
   const page_title: string = "Page: Dashboard";
-  const [posts, setPosts] = useState<Post[]>(dummyPosts);
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(Routes.POST, { withCredentials: true })
+      .then((response) => {
+        console.log("@get:then");
+      })
+      .catch((response) => {
+        console.log("@get:catch");
+      });
+  });
 
   // Read
   const readThisPost = (post: Post) => {

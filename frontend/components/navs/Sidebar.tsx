@@ -16,31 +16,63 @@ import { CSidebarToggler } from "@coreui/react";
 import { CSidebarHeader } from "@coreui/react";
 import { CSidebarFooter } from "@coreui/react";
 
-const Sidebar= (): JSX.Element => {
+interface linkSet {
+  text: string;
+  url: string;
+}
+
+interface menuItem {
+  subject: string;
+  methods: linkSet[];
+}
+
+const Sidebar = (props: Object): JSX.Element => {
+  const SidebarTitle = "App Name";
+  const SidebarItems: menuItem[] = [
+    {
+      subject: "User",
+      methods: [
+        {
+          text: "List",
+          url: "/user/list",
+        },
+        {
+          text: "Create",
+          url: "/user/create",
+        },
+      ],
+    },
+    {
+      subject: "Post",
+      methods: [
+        {
+          text: "List",
+          url: "/post/list",
+        },
+        {
+          text: "Create",
+          url: "/post/create",
+        },
+      ],
+    },
+  ];
+
   return (
-    <CSidebar className="h-100">
+    // TODO: Icon
+    <CSidebar style={{ height: "100vh" }}>
       <CSidebarBrand>Sidebar Brand</CSidebarBrand>
       <CSidebarNav>
-        <CNavTitle>Nav Title</CNavTitle>
-        <CNavItem href="#">
-          {/* <CIcon customClassName="nav-icon" icon={cilSpeedometer} /> */}
-          Nav item
-        </CNavItem>
-        <CNavItem href="#">
-          {/* <CIcon customClassName="nav-icon" icon={cilSpeedometer} /> */}
-          With badge
-          <CBadge color="primary ms-auto">NEW</CBadge>
-        </CNavItem>
-        <CNavGroup toggler="Nav dropdown">
-          <CNavItem href="#">
-            {/* <CIcon customClassName="nav-icon" icon={cilPuzzle} /> Nav dropdown */}
-            item
-          </CNavItem>
-          <CNavItem href="#">
-            {/* <CIcon customClassName="nav-icon" icon={cilPuzzle} /> Nav dropdown */}
-            item
-          </CNavItem>
-        </CNavGroup>
+        <CNavTitle>{SidebarTitle}</CNavTitle>
+        {SidebarItems.map((item: menuItem) => {
+          console.log("@item: ", item);
+          return (
+            <CNavGroup toggler={item.subject}>
+              {item.methods.map((item: linkSet) => {
+                return <CNavItem href={item.url}>{item.text}</CNavItem>;
+              })}
+            </CNavGroup>
+          );
+        })}
       </CSidebarNav>
       <CSidebarToggler />
     </CSidebar>

@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import Routes from "../../routes/routes";
-import * as COMMON_W from "../../constant/word/common";
-import * as ERROR_W from "../../constant/word/error";
+import * as W_COMMON from "../../constant/word/common";
+import * as W_ERROR from "../../constant/word/error";
 
 const CardLoginSample = (): JSX.Element => {
   // Router
@@ -26,10 +26,10 @@ const CardLoginSample = (): JSX.Element => {
   const errorPasswordExists: boolean = false;
   //
   const helperTextLoginId: string = errorLoginIdExists
-    ? `${COMMON_W.LOGIN}${ERROR_W.REQUIRED}`
+    ? `${W_COMMON.LOGIN}${W_ERROR.REQUIRED}`
     : "";
   const helperTextPassword: string = errorPasswordExists
-    ? `${COMMON_W.PASSWORD}${ERROR_W.REQUIRED}`
+    ? `${W_COMMON.PASSWORD}${W_ERROR.REQUIRED}`
     : "";
   /**
    * Handles
@@ -58,7 +58,8 @@ const CardLoginSample = (): JSX.Element => {
             console.log(response);
             if (response.data.status == "login") {
               console.log("login");
-              router.push(Routes.DASHBOARD);
+              router.push(Routes.POST_DASHBOARD);
+              // router.push(Routes.DASHBOARD);
             }
           })
           .catch((response) => {
@@ -84,7 +85,7 @@ const CardLoginSample = (): JSX.Element => {
           helperText={helperTextLoginId}
           fullWidth
           id="loginId"
-          label={`${COMMON_W.LOGIN_ID}`}
+          label={`${W_COMMON.LOGIN_ID}`}
           variant="outlined"
           margin="dense"
           onChange={(e) => handleUserName(e)}
@@ -95,7 +96,7 @@ const CardLoginSample = (): JSX.Element => {
           fullWidth
           type="password"
           id="password"
-          label={`${COMMON_W.PASSWORD}`}
+          label={`${W_COMMON.PASSWORD}`}
           variant="outlined"
           margin="dense"
           onChange={(e) => handlePassword(e)}
@@ -116,7 +117,7 @@ const CardLoginSample = (): JSX.Element => {
               handleLogin();
             }}
           >
-            {COMMON_W.LOGIN}
+            {W_COMMON.LOGIN}
           </Button>
         </Box>
       </CardContent>

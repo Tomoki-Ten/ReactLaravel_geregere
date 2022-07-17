@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function confirm()
     {
-        \Log::debug('[+] Confirm');
+        \Log::debug('[+]Auth:confirm');
         if (Auth::check()) {
             return response()->json(['status' => 'Authorized'], 200);
         } else {
