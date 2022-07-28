@@ -1,18 +1,21 @@
+// Like Libraries
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
+import Head from "next/head";
 import { useSelector, useDispatch } from "react-redux";
 import type { LoginStatus } from "../../store/index";
-import Head from "next/head";
-// import Header from "./Header";
-import Sidebar from "../navs/Sidebar";
+import { Box, CircularProgress, Stack } from "@mui/material";
+import axios from "axios";
+
+// Developper
+import DrawerSet from "../navs/DrawerSet";
 import Routes from "../../routes/routes";
 
-interface Props {
+export interface Props {
   children: React.ReactNode;
 }
 
-const LayoutAuth = (props: Props): JSX.Element => {
+const LayoutAuth = (props: Props): any => {
   const header_contents: string = "Applicaton Header";
   const router = useRouter();
   /* Redux */
@@ -20,6 +23,7 @@ const LayoutAuth = (props: Props): JSX.Element => {
   const login = useSelector<LoginStatus>((state) => state.login);
 
   useEffect(() => {
+    console.log("@effect");
     if (!login) {
       axios
         .get(Routes.AUTH_CONFIRM, { withCredentials: true })
@@ -49,15 +53,24 @@ const LayoutAuth = (props: Props): JSX.Element => {
         {/* <header>
           <Header contents={header_contents} />
         </header> */}
-        <main className="d-flex w-100">
-          <Sidebar />
-          {props.children}
-        </main>
+        {/* <main className="d-flex w-100"> */}
+        <DrawerSet>{props.children}</DrawerSet>
+        {/* </main> */}
       </div>
     );
   } else {
-    // TODO: Add Loading Spinner As Preloader
-    return <></>;
+    return (
+      <Box
+        sx={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
   }
 };
 

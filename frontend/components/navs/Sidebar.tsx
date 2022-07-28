@@ -1,3 +1,4 @@
+import Routes from "../../routes/routes";
 /* Bootstrap */
 import "bootstrap/dist/css/bootstrap.min.css";
 /* CoreUI */
@@ -7,20 +8,19 @@ import { CSidebarBrand } from "@coreui/react";
 import { CSidebarNav } from "@coreui/react";
 import { CNavTitle } from "@coreui/react";
 import { CNavItem } from "@coreui/react";
-import { CBadge } from "@coreui/react";
+// import { CBadge } from "@coreui/react";
 // import * as icon from "@coreui/icons";
 // import { CIcon } from "@coreui/icons-react";
-import { cilList, cilShieldAlt, cilSpeedometer } from "@coreui/icons";
+// import { cilList, cilShieldAlt, cilSpeedometer } from "@coreui/icons";
 import { CNavGroup } from "@coreui/react";
 import { CSidebarToggler } from "@coreui/react";
-import { CSidebarHeader } from "@coreui/react";
-import { CSidebarFooter } from "@coreui/react";
+// import { CSidebarHeader } from "@coreui/react";
+// import { CSidebarFooter } from "@coreui/react";
 
 interface linkSet {
   text: string;
   url: string;
 }
-
 interface menuItem {
   subject: string;
   methods: linkSet[];
@@ -34,11 +34,11 @@ const Sidebar = (props: Object): JSX.Element => {
       methods: [
         {
           text: "List",
-          url: "/user/list",
+          url: Routes.P_USER_DASHBOARD,
         },
         {
           text: "Create",
-          url: "/user/create",
+          url: Routes.P_USER_CREATE,
         },
       ],
     },
@@ -47,11 +47,11 @@ const Sidebar = (props: Object): JSX.Element => {
       methods: [
         {
           text: "List",
-          url: "/post/list",
+          url: Routes.P_POST_DASHBOARD,
         },
         {
           text: "Create",
-          url: "/post/create",
+          url: Routes.P_POST_CREATE,
         },
       ],
     },
@@ -64,7 +64,6 @@ const Sidebar = (props: Object): JSX.Element => {
       <CSidebarNav>
         <CNavTitle>{SidebarTitle}</CNavTitle>
         {SidebarItems.map((item: menuItem) => {
-          console.log("@item: ", item);
           return (
             <CNavGroup toggler={item.subject}>
               {item.methods.map((item: linkSet) => {

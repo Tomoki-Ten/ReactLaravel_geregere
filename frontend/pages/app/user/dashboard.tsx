@@ -50,6 +50,7 @@ const Dashboard = (): JSX.Element => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
+    console.log("@Effect: User");
     axios
       .get(Routes.POST, { withCredentials: true })
       .then((response) => {

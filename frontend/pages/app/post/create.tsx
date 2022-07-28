@@ -92,38 +92,6 @@ const Create = (): JSX.Element => {
             ></input>
           </div>
           {/* CHECK */}
-          {/* <div>
-            <label htmlFor="input_check_01">
-              CHECK-01:
-              <input
-                type="checkbox"
-                name="check[]"
-                id="input_check_01"
-                value="1"
-                onChange={(e) => handleChangeCheckbox(e)}
-              ></input>
-            </label>
-            <label htmlFor="input_check_02">
-              CHECK-02:
-              <input
-                type="checkbox"
-                name="check[]"
-                id="input_check_02"
-                value="2"
-                onChange={(e) => handleChangeCheckbox(e)}
-              ></input>
-            </label>
-            <label htmlFor="input_check_03">
-              CHECK-03:
-              <input
-                type="checkbox"
-                name="check[]"
-                id="input_check_03"
-                value="3"
-                onChange={(e) => handleChangeCheckbox(e)}
-              ></input>
-            </label>
-          </div> */}
           {/* BOOL */}
           <div>
             <label htmlFor="input_bool_true">

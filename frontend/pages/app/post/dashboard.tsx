@@ -6,7 +6,7 @@ import Routes from "../../../routes/routes";
 import AppTitle from "../../../components/AppTitle";
 import TBody from "../../../components/table/TBody";
 import LayoutAuth from "../../../components/layouts/LayoutAuth";
-import Sidebar from "../../../components/navs/Sidebar";
+// import Sidebar from "../../../components/navs/Sidebar";
 
 export interface Post {
   id: number;
@@ -26,6 +26,7 @@ const Dashboard = (): JSX.Element => {
   const [posts, setPosts] = useState<Post[]>([]);
   // useEffect
   useEffect(() => {
+    console.log("@Effect");
     axios
       .get(Routes.POST_LIST, { withCredentials: true })
       .then((response) => {

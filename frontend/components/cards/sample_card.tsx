@@ -58,15 +58,16 @@ const CardLoginSample = (): JSX.Element => {
             console.log(response);
             if (response.data.status == "login") {
               console.log("login");
-              router.push(Routes.POST_DASHBOARD);
-              // router.push(Routes.DASHBOARD);
+              router.push(Routes.P_POST_DASHBOARD);
             }
           })
           .catch((response) => {
+            // ERROR PROGRAM
             console.log(response);
           });
       })
       .catch((response) => {
+        // ERROR PROGRAM
         console.log(response);
       });
   };
