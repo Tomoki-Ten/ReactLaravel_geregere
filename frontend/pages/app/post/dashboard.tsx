@@ -3,9 +3,11 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Routes from "../../../routes/routes";
 // import type { NextPage } from "next";
+// Developer
 import AppTitle from "../../../components/AppTitle";
 import TBody from "../../../components/table/TBody";
 import LayoutAuth from "../../../components/layouts/LayoutAuth";
+import DataGridTable from "../../../components/table/DataGridTable";
 // import Sidebar from "../../../components/navs/Sidebar";
 
 export interface Post {
@@ -65,7 +67,8 @@ const Dashboard = (): JSX.Element => {
       {/* TODO: Make it Component */}
       <div className="w-100" style={{ height: "100vh", overflow: "scroll" }}>
         <AppTitle page_title={page_title} />
-        <div className="w-100">
+        <DataGridTable posts={posts} />
+        {/* <div className="w-100">
           <table className="table w-auto">
             <thead>
               <tr>
@@ -86,7 +89,7 @@ const Dashboard = (): JSX.Element => {
               clickEvent={clickEvent}
             />
           </table>
-        </div>
+        </div> */}
       </div>
     </LayoutAuth>
   );

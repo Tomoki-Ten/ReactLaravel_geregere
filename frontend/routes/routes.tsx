@@ -25,12 +25,12 @@ class Routes {
   static readonly APP: string = "/app";
   // Page
   // User
-  static readonly P_USER_DASHBOARD: string = Routes.APP + "/user/dashboard";
-  static readonly P_USER_CREATE: string = Routes.APP + "/user/create";
+  static readonly P_USER_DASHBOARD: string = Routes.APP + "/user/Dashboard";
+  static readonly P_USER_CREATE: string = Routes.APP + "/user/Create";
 
   // Post: prefix: P_
-  static readonly P_POST_DASHBOARD: string = Routes.APP + "/post/dashboard";
-  static readonly P_POST_CREATE: string = Routes.APP + "/post/create";
+  static readonly P_POST_DASHBOARD: string = Routes.APP + "/post/Dashboard";
+  static readonly P_POST_CREATE: string = Routes.APP + "/post/Create";
 }
 
 export default Routes;

@@ -50,12 +50,7 @@ const LayoutAuth = (props: Props): any => {
           />
           <title>Layout Title</title>
         </Head>
-        {/* <header>
-          <Header contents={header_contents} />
-        </header> */}
-        {/* <main className="d-flex w-100"> */}
         <DrawerSet>{props.children}</DrawerSet>
-        {/* </main> */}
       </div>
     );
   } else {
