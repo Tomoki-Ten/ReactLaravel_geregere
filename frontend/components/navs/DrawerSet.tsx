@@ -19,6 +19,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Props } from "../layouts/LayoutAuth";
+import Routes from "../../routes/routes";
 
 const drawerWidth = 240;
 
@@ -141,9 +142,28 @@ const DrawerSet = (props: Props): JSX.Element => {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+          {[
+            {
+              page: "List",
+              url: Routes.P_POST_DASHBOARD,
+            },
+            {
+              page: "Create",
+              url: Routes.P_POST_CREATE,
+            },
+            {
+              page: "Send Mail",
+              url: Routes.P_USER_DASHBOARD,
+            },
+            {
+              page: "Drafts",
+              url: Routes.P_USER_CREATE,
+            },
+          ].map((item, index) => (
+            <ListItem key={item.page} disablePadding sx={{ display: "block" }}>
               <ListItemButton
+                component="a"
+                href={item.url}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
@@ -159,7 +179,10 @@ const DrawerSet = (props: Props): JSX.Element => {
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  primary={item.page}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
           ))}

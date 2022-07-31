@@ -1,5 +1,5 @@
 import React from "react";
-import type { Post } from "../../pages/app/user/dashboard";
+import type { Post } from "../../pages/app/user/Dashboard";
 import { CButton } from "@coreui/react";
 
 interface Props {

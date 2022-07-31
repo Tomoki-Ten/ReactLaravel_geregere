@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import {
   DataGrid,
   GridColDef,
-  GridValueGetterParams,
+  // GridValueGetterParams,
   GridToolbar,
   jaJP,
 } from "@mui/x-data-grid";
@@ -30,7 +30,7 @@ const columns: GridColDef[] = [
   {
     field: "text",
     headerName: "Text",
-    width: 110,
+    width: 200,
     sortable: true,
     description: "description sample",
     // valueGetter: (params: GridValueGetterParams) =>
@@ -50,11 +50,11 @@ const DataGridTable = (props: Props): JSX.Element => {
         <DataGrid
           rows={props.posts}
           columns={columns}
-          pageSize={20}
+          // pageSize={2}
           // autoPageSize
-          rowsPerPageOptions={[20]}
-          checkboxSelection
-          disableSelectionOnClick
+          // rowsPerPageOptions={[20]}
+          // checkboxSelection
+          // disableSelectionOnClick
           density="compact"
           // checkboxSelection={false}
           // editMode={"row"}

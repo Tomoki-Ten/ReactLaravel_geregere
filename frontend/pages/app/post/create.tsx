@@ -1,8 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Routes from "../../../routes/routes";
+import { Box, Paper, Grid, Typography, TextField } from "@mui/material";
+// import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import AppTitle from "../../../components/AppTitle";
 import LayoutAuth from "../../../components/layouts/LayoutAuth";
+import InputWithLabel from "../../../components/forms/InputWithLabel";
+import Routes from "../../../routes/routes";
+
+// const theme = createTheme({
+//   typography: {
+//     verticalAlign: "center",
+//   },
+// });
+
+interface inputType {
+  type?: string;
+  name?: string;
+}
 
 const Create = (): JSX.Element => {
   const page_title: string = "Create Page";
@@ -61,58 +76,37 @@ const Create = (): JSX.Element => {
       });
   };
 
+  const inputSet: inputType[] = [
+    {
+      type: "text",
+      name: "title",
+    },
+    {
+      type: "text",
+      name: "text",
+    },
+    {
+      type: "select",
+      name: "tel",
+    },
+  ];
+
   return (
     <LayoutAuth>
       <AppTitle page_title={page_title} />
-      <div>
-        <form method="POST" action="">
-          {/* USER */}
-          <div>
-            <label htmlFor="input_user">USER: </label>
-            <input type="text" name="" id="input_user"></input>
-          </div>
-          {/* TITLE */}
-          <div>
-            <label htmlFor="input_title">TITLE: </label>
-            <input
-              type="text"
-              name="title"
-              id="input_title"
-              onChange={(e) => handleChangeTitle(e)}
-            ></input>
-          </div>
-          {/* TEXT */}
-          <div>
-            <label htmlFor="input_text">TEXT: </label>
-            <input
-              type="text"
-              name="text"
-              id="input_text"
-              onChange={(e) => handleChangeText(e)}
-            ></input>
-          </div>
-          {/* CHECK */}
-          {/* BOOL */}
-          <div>
-            <label htmlFor="input_bool_true">
-              TRUE:
-              <input type="radio" name="bool" id="input_bool_true"></input>
-            </label>
-            <label htmlFor="input_bool_false">
-              FALSE:
-              <input type="radio" name="bool" id="input_bool_false"></input>
-            </label>
-          </div>
-          <div>
-            <button type="button" onClick={handleClickCreate}>
-              Create
-            </button>
-            <button type="button" onClick={handleClickCheck}>
-              Check Inputs
-            </button>
-          </div>
-        </form>
-      </div>
+      <Box component="div">
+        <Paper elevation={3} sx={{ px: 3 }}>
+          {inputSet.map((item: inputType) => {
+            return (
+              <InputWithLabel
+                name={item.name ? item.name : "default"}
+                key={item.name ? item.name : "default"}
+              />
+            );
+          })}
+        </Paper>
+      </Box>
+      {/* TODO: Send Data to backend with Axios!! */}
     </LayoutAuth>
   );
 };

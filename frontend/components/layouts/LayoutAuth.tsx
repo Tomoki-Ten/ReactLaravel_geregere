@@ -16,7 +16,7 @@ export interface Props {
 }
 
 const LayoutAuth = (props: Props): any => {
-  const header_contents: string = "Applicaton Header";
+  // const header_contents: string = "Applicaton Header";
   const router = useRouter();
   /* Redux */
   const dispatch = useDispatch();
