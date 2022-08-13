@@ -5,8 +5,8 @@ import Routes from "../../../routes/routes";
 // import type { NextPage } from "next";
 // Developer
 import AppTitle from "../../../components/AppTitle";
-import TBody from "../../../components/table/TBody";
-import LayoutAuth from "../../../components/layouts/LayoutAuth";
+// import TBody from "../../../components/table/TBody";
+import LayoutAuth from "../../../components/layout/LayoutAuth";
 import DataGridTable from "../../../components/table/DataGridTable";
 // import Sidebar from "../../../components/navs/Sidebar";
 
@@ -64,32 +64,9 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <LayoutAuth>
-      {/* TODO: Make it Component */}
       <div className="w-100" style={{ height: "100vh", overflow: "scroll" }}>
         <AppTitle page_title={page_title} />
         <DataGridTable posts={posts} />
-        {/* <div className="w-100">
-          <table className="table w-auto">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">USER NAME</th>
-                <th scope="col">TITLE</th>
-                <th scope="col">TEXT</th>
-                <th scope="col">CHECK</th>
-                <th scope="col">BOOL</th>
-                <th scope="col">CREATED_AT</th>
-                <th scope="col">CONTROLER</th>
-              </tr>
-            </thead>
-            <TBody
-              posts={posts}
-              deletePost={deletePost}
-              readThisPost={readThisPost}
-              clickEvent={clickEvent}
-            />
-          </table>
-        </div> */}
       </div>
     </LayoutAuth>
   );

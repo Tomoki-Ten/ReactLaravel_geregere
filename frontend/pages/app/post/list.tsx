@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import AppTitle from "../../../components/AppTitle";
-import LayoutAuth from "../../../components/layouts/LayoutAuth";
+import LayoutAuth from "../../../components/layout/LayoutAuth";
 import TBody from "../../../components/table/TBody";
 
 export interface Post {

@@ -1,12 +1,20 @@
+import React, { useState } from "react";
 import { Grid, Typography, TextField } from "@mui/material";
 
 interface Props {
   name: string;
+  defaultVal?: string | number | boolean;
+  // key?: string;
+  changeAction?: any;
 }
 
 const InputWithLabel = (props: Props): JSX.Element => {
-  const { name } = props;
-  const inputVariant = "h6";
+  const { name, defaultVal, changeAction } = props;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("@argSide");
+    changeAction(e);
+  };
 
   // replace to Library
   const firstChar = name.charAt(0).toUpperCase();
@@ -27,7 +35,14 @@ const InputWithLabel = (props: Props): JSX.Element => {
         </Typography>
       </Grid>
       <Grid item xs={9}>
-        <TextField id={name} label={name} size="small" variant="outlined" />
+        <TextField
+          id={name}
+          label={nameDisplayed}
+          size="small"
+          variant="outlined"
+          onChange={(e) => changeAction(e)}
+          fullWidth
+        />
       </Grid>
     </Grid>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 // import type { NextPage } from "next";
 import AppTitle from "../../../components/AppTitle";
 import TBody from "../../../components/table/TBody";
-import LayoutAuth from "../../../components/layouts/LayoutAuth";
+import LayoutAuth from "../../../components/layout/LayoutAuth";
 import { cibSonos } from "@coreui/icons";
 
 export interface Post {

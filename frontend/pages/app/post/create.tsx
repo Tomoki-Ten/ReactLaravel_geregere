@@ -3,59 +3,36 @@ import axios from "axios";
 import { Box, Paper, Grid, Typography, TextField } from "@mui/material";
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import AppTitle from "../../../components/AppTitle";
-import LayoutAuth from "../../../components/layouts/LayoutAuth";
-import InputWithLabel from "../../../components/forms/InputWithLabel";
 import Routes from "../../../routes/routes";
+import AppTitle from "../../../components/AppTitle";
+import LayoutAuth from "../../../components/layout/LayoutAuth";
+import InputWithLabel from "../../../components/form/InputWithLabel";
+import ModalWithButton from "../../../components/modal/ModalWithButton";
 
-// const theme = createTheme({
-//   typography: {
-//     verticalAlign: "center",
-//   },
-// });
-
-interface inputType {
-  type?: string;
-  name?: string;
+export interface inputType {
+  type: string;
+  name: string;
+  default: string | number | boolean;
+  value: string | number | boolean;
+  fn: any;
 }
 
 const Create = (): JSX.Element => {
   const page_title: string = "Create Page";
 
+  // useState
   const [inputTitle, setInputTitle] = useState<string>("");
   const [inputText, setInputText] = useState<string>("");
-  const [inputCheck, setInputCheck] = useState<number[]>([]);
-  const [inputBool, setInputBool] = useState<boolean>(false);
-
+  // Input's Function
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(inputTitle);
     setInputTitle(e.target.value);
   };
-
   const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(inputText);
     setInputText(e.target.value);
   };
-
-  const handleChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(inputCheck);
-    console.log(e.target.checked);
-
-    setInputCheck({
-      ...inputCheck,
-      [e.target.id]: e.target.value,
-    });
-  };
-
-  const handleClickCheck = () => {
-    console.log("title: ", inputTitle);
-    console.log("text: ", inputText);
-    console.log("check: ", inputCheck);
-    console.log("bool: ", inputBool);
-  };
-
-  const handleClickCreate = () => {
-    console.log("handleClickCreate");
+  // Function that is arg of ModalWithButton
+  const handleRegister = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("@handleRegister");
     axios
       .post(
         Routes.POST_CREATE,
@@ -63,16 +40,14 @@ const Create = (): JSX.Element => {
           name: 0,
           title: inputTitle,
           text: inputText,
-          // check: inputCheck,
-          bool: inputBool,
         },
         { withCredentials: true }
       )
       .then((response) => {
-        console.log("handleClickCreate: then: ", response);
+        console.log("@register: then: ", response);
       })
       .catch((response) => {
-        console.log("handleClickCreate: catch: ", response);
+        console.log("@register: catch: ", response);
       });
   };
 
@@ -80,14 +55,16 @@ const Create = (): JSX.Element => {
     {
       type: "text",
       name: "title",
+      default: "titleDefault",
+      value: inputText,
+      fn: handleChangeTitle,
     },
     {
       type: "text",
       name: "text",
-    },
-    {
-      type: "select",
-      name: "tel",
+      default: "textDefault",
+      value: inputTitle,
+      fn: handleChangeText,
     },
   ];
 
@@ -95,18 +72,22 @@ const Create = (): JSX.Element => {
     <LayoutAuth>
       <AppTitle page_title={page_title} />
       <Box component="div">
-        <Paper elevation={3} sx={{ px: 3 }}>
-          {inputSet.map((item: inputType) => {
+        <Paper elevation={3} sx={{ p: 3 }}>
+          {/* Inputs */}
+          {inputSet.map((each: inputType) => {
             return (
               <InputWithLabel
-                name={item.name ? item.name : "default"}
-                key={item.name ? item.name : "default"}
+                name={each.name}
+                defaultVal={each.default}
+                key={each.name}
+                changeAction={each.fn}
               />
             );
           })}
+          {/* Confirm Modal */}
+          <ModalWithButton data={inputSet} btnAction={handleRegister} />
         </Paper>
       </Box>
-      {/* TODO: Send Data to backend with Axios!! */}
     </LayoutAuth>
   );
 };

@@ -20,21 +20,24 @@ const columns: GridColDef[] = [
     field: "id",
     headerName: "ID",
     width: 90,
+    // flex: 1,
   },
   {
     field: "title",
     headerName: "Title",
     width: 150,
     editable: true,
+    // flex: 1,
   },
   {
     field: "text",
     headerName: "Text",
-    width: 200,
+    // width: auto,
     sortable: true,
     description: "description sample",
     // valueGetter: (params: GridValueGetterParams) =>
     // `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    flex: 1,
   },
 ];
 

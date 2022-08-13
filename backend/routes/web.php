@@ -26,11 +26,14 @@ Route::get('/test', function () {
 
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'auth'], function() {
     Route::get('/confirm', [AuthController::class, 'confirm'])->name('confirm');
-    // Post Routes
+    /**
+     * POST
+     */
     Route::group(['prefix' => 'post'], function() {
+        Route::get('/list', [PostController::class, 'list'])->name('list');
         Route::post('/create',   [PostController::class, 'create'])->name('create');
-        Route::get('/list', [PostController::class, 'list']);
     });
+    
 });
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');

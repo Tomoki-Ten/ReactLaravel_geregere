@@ -8,7 +8,7 @@ import { Box, CircularProgress, Stack } from "@mui/material";
 import axios from "axios";
 
 // Developper
-import DrawerSet from "../navs/DrawerSet";
+import DrawerSet from "../nav/DrawerSet";
 import Routes from "../../routes/routes";
 
 export interface Props {
@@ -23,7 +23,7 @@ const LayoutAuth = (props: Props): any => {
   const login = useSelector<LoginStatus>((state) => state.login);
 
   useEffect(() => {
-    console.log("@effect");
+    console.log("@Confirm: Login");
     if (!login) {
       axios
         .get(Routes.AUTH_CONFIRM, { withCredentials: true })

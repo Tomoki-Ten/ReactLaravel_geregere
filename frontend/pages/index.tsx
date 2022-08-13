@@ -1,6 +1,6 @@
 import React from "react";
-import LayoutUnauth from "../components/layouts/LayoutUnauth";
-import CardLoginSample from "../components/cards/CardLoginSample";
+import LayoutUnauth from "../components/layout/LayoutUnauth";
+import CardLoginSample from "../components/card/CardLoginSample";
 
 const Login = (): JSX.Element => {
   return (
