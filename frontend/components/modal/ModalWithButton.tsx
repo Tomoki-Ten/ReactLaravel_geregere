@@ -9,6 +9,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 500,
   bgcolor: "background.paper",
+  border: "none",
   // border: "2px solid #000",
   borderRadius: "8px",
   boxShadow: 24,
@@ -70,8 +71,9 @@ const ModalWithButton = (props: any): JSX.Element => {
               </Grid>
             );
           })}
-          <Grid container sx={{ mt: 3 }}>
-            <Grid item>
+          <Divider sx={{ mt: 2 }} />
+          <Grid container sx={{ mt: 2 }}>
+            <Grid item sx={{ mr: 3 }}>
               <Button variant="outlined" onClick={handleClickClose}>
                 Close
               </Button>

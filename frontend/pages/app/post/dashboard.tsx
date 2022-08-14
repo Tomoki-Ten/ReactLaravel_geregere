@@ -28,17 +28,17 @@ const Dashboard = (): JSX.Element => {
   const [posts, setPosts] = useState<Post[]>([]);
   // useEffect
   useEffect(() => {
-    console.log("@Effect");
+    // console.log("@Effect");
     axios
       .get(Routes.POST_LIST, { withCredentials: true })
       .then((response) => {
-        console.log("@get:then");
-        console.log(response);
+        // console.log("@get:then");
+        // console.log(response);
         setPosts(response.data);
       })
       .catch((response) => {
-        console.log("@get:catch");
-        console.log(response);
+        // console.log("@get:catch");
+        // console.log(response);
       });
   }, []);
 

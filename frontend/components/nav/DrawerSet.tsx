@@ -1,6 +1,7 @@
 import Routes from "../../routes/routes";
 
-import * as React from "react";
+import { useState } from "react";
+import Link from "next/link";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,8 +18,14 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
+import StarBorder from "@mui/icons-material/StarBorder";
+import { extractEventHandlers } from "@mui/base";
+import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 interface Props {
   /**
@@ -30,10 +37,52 @@ interface Props {
 
 export default function ResponsiveDrawer(props: Props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  // Sidebar Contents
+  let sidebarItems = [
+    {
+      subject: "POST",
+      open: false,
+      menu: [
+        {
+          page: "List",
+          url: Routes.P_POST_DASHBOARD,
+        },
+        {
+          page: "Create",
+          url: Routes.P_POST_CREATE,
+        },
+      ],
+    },
+    {
+      subject: "USER",
+      open: false,
+      menu: [
+        {
+          page: "list",
+          url: "#",
+        },
+        {
+          page: "create",
+          url: "#",
+        },
+      ],
+    },
+  ];
+
+  const [postOpen, setPostOpen] = useState(true);
+  const [userOpen, setUserOpen] = useState(true);
+
+  const handlePostClick = () => {
+    setPostOpen(!postOpen);
+  };
+  const handleUserClick = () => {
+    setUserOpen(!userOpen);
   };
 
   const drawer = (
@@ -41,50 +90,100 @@ export default function ResponsiveDrawer(props: Props) {
       <Toolbar />
       <Divider />
       <List>
-        {[
-          {
-            page: "List",
-            url: Routes.P_POST_DASHBOARD,
-          },
-          {
-            page: "Create",
-            url: Routes.P_POST_CREATE,
-          },
-          {
-            page: "Send Mail",
-            url: Routes.P_USER_DASHBOARD,
-          },
-          {
-            page: "Drafts",
-            url: Routes.P_USER_CREATE,
-          },
-        ].map((item, index) => (
-          <ListItem key={item.page} disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              component="a"
-              href={item.url}
+        <ListItem
+          key={sidebarItems[0].subject}
+          disablePadding
+          sx={{ display: "block" }}
+        >
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              px: 2.5,
+            }}
+            onClick={() => handlePostClick()}
+          >
+            <ListItemIcon
               sx={{
-                minHeight: 48,
-                // justifyContent: open ? "initial" : "center",
-                px: 2.5,
+                minWidth: 0,
+                mr: 3,
+                justifyContent: "center",
               }}
             >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText
-                primary={item.page}
-                // sx={{ opacity: open ? 1 : 0 }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={sidebarItems[0].subject} />
+            {postOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={postOpen} timeout="auto" unmountOnExit>
+            {sidebarItems[0].menu.map((each: any) => {
+              return (
+                <List
+                  key={`${sidebarItems[0].subject}_${each.page}`}
+                  component="div"
+                  disablePadding
+                >
+                  <Link href={each.url}>
+                    <ListItemButton sx={{ pl: 4 }} component="a">
+                      <ListItemIcon>
+                        <StarBorder />
+                      </ListItemIcon>
+                      <ListItemText primary={each.page} />
+                    </ListItemButton>
+                  </Link>
+                </List>
+              );
+            })}
+          </Collapse>
+        </ListItem>
+        <ListItem
+          key={sidebarItems[1].subject}
+          disablePadding
+          sx={{ display: "block" }}
+        >
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              px: 2.5,
+            }}
+            onClick={() => handleUserClick()}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: 3,
+                justifyContent: "center",
+              }}
+            >
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={sidebarItems[1].subject} />
+            {userOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={userOpen} timeout="auto" unmountOnExit>
+            {sidebarItems[1].menu.map((each: any) => {
+              return (
+                <List
+                  key={`${sidebarItems[1].subject}_${each.page}`}
+                  component="div"
+                  disablePadding
+                >
+                  <Link href={each.url}>
+                    <ListItemButton
+                      sx={{ pl: 4 }}
+                      component="a"
+                      href={each.url}
+                    >
+                      <ListItemIcon>
+                        <StarBorder />
+                      </ListItemIcon>
+                      <ListItemText primary={each.page} />
+                    </ListItemButton>
+                  </Link>
+                </List>
+              );
+            })}
+          </Collapse>
+        </ListItem>
       </List>
     </div>
   );

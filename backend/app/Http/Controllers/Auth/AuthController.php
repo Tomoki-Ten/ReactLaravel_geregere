@@ -11,13 +11,11 @@ class AuthController extends Controller
 {
     public function confirm()
     {
-        \Log::debug('[+]Auth:confirm');
         if (Auth::check()) {
             return response()->json(['status' => 'Authorized'], 200);
         } else {
             return response()->json(['status' => 'Unauthorized'], 401);
         }
-        // return 'successfully accessed!';
     }
 
     public function no_cre()

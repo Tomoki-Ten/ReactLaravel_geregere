@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { LoginStatus } from "../../store";
 import axios from "axios";
 import {
   Box,
@@ -16,6 +18,10 @@ import * as W_ERROR from "../../constant/word/error";
 const CardLoginSample = (): JSX.Element => {
   // Router
   const router = useRouter();
+  // Redux
+  const dispatch = useDispatch();
+  // const login = useSelector<LoginStatus>((state) => state.login);
+
   // useState
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -44,7 +50,7 @@ const CardLoginSample = (): JSX.Element => {
     axios
       .get(Routes.SANCTUM, { withCredentials: true })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         axios
           .post(
             Routes.LOGIN,
@@ -55,20 +61,23 @@ const CardLoginSample = (): JSX.Element => {
             { withCredentials: true }
           )
           .then((response) => {
-            console.log(response);
-            if (response.data.status == "login") {
-              console.log("login");
+            // console.log(response);
+            if (response.data.status === "login") {
+              console.log("@@login");
+              dispatch({ type: "AUTH" });
               router.push(Routes.P_POST_DASHBOARD);
             }
           })
           .catch((response) => {
             // ERROR PROGRAM
             console.log(response);
+            dispatch({ type: "UNAUTH" });
           });
       })
       .catch((response) => {
         // ERROR PROGRAM
         console.log(response);
+        dispatch({ type: "UNAUTH" });
       });
   };
 

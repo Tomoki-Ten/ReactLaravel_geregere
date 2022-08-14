@@ -15,17 +15,22 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/no_cre', [AuthController::class, 'no_cre']);
 Route::get('/test', function () {
     return 'test';
 });
 
+/* LOGIN */
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'auth'], function() {
+    /* CONFIRM */
     Route::get('/confirm', [AuthController::class, 'confirm'])->name('confirm');
+
     /**
      * POST
      */
@@ -33,7 +38,6 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'auth'], function() 
         Route::get('/list', [PostController::class, 'list'])->name('list');
         Route::post('/create',   [PostController::class, 'create'])->name('create');
     });
-    
+
 });
 
-Route::post('/login', [AuthController::class, 'login'])->name('login');

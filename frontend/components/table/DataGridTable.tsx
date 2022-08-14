@@ -44,9 +44,9 @@ const columns: GridColDef[] = [
 const theme = createTheme({}, jaJP);
 
 const DataGridTable = (props: Props): JSX.Element => {
-  console.log("@props");
-  console.log(props);
-  console.log(props.posts);
+  // console.log("@props");
+  // console.log(props);
+  // console.log(props.posts);
   return (
     <Box sx={{ height: 400, width: "100%" }}>
       <ThemeProvider theme={theme}>

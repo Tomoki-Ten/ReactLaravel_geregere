@@ -6,16 +6,17 @@ import { useSelector, useDispatch } from "react-redux";
 import type { LoginStatus } from "../../store/index";
 import { Box, CircularProgress, Stack } from "@mui/material";
 import axios from "axios";
-
 // Developper
 import DrawerSet from "../nav/DrawerSet";
 import Routes from "../../routes/routes";
+
+// import store from "../../store/index";
 
 export interface Props {
   children: React.ReactNode;
 }
 
-const LayoutAuth = (props: Props): any => {
+const LayoutAuth = (props: Props): JSX.Element => {
   // const header_contents: string = "Applicaton Header";
   const router = useRouter();
   /* Redux */
@@ -23,8 +24,9 @@ const LayoutAuth = (props: Props): any => {
   const login = useSelector<LoginStatus>((state) => state.login);
 
   useEffect(() => {
-    console.log("@Confirm: Login");
-    if (!login) {
+    // console.log("@ConfirmState: ", store.getState());
+    if (login === 0) {
+      console.log("@in");
       axios
         .get(Routes.AUTH_CONFIRM, { withCredentials: true })
         .then((response) => {

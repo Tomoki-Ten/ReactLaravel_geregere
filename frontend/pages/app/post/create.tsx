@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Box, Paper, Grid, Typography, TextField } from "@mui/material";
+import { Button, Box, Paper, Grid, Typography, TextField } from "@mui/material";
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import Routes from "../../../routes/routes";
@@ -8,6 +8,8 @@ import AppTitle from "../../../components/AppTitle";
 import LayoutAuth from "../../../components/layout/LayoutAuth";
 import InputWithLabel from "../../../components/form/InputWithLabel";
 import ModalWithButton from "../../../components/modal/ModalWithButton";
+
+import store from "../../../store/index";
 
 export interface inputType {
   type: string;
@@ -23,6 +25,7 @@ const Create = (): JSX.Element => {
   // useState
   const [inputTitle, setInputTitle] = useState<string>("");
   const [inputText, setInputText] = useState<string>("");
+
   // Input's Function
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputTitle(e.target.value);
@@ -30,6 +33,7 @@ const Create = (): JSX.Element => {
   const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
+
   // Function that is arg of ModalWithButton
   const handleRegister = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("@handleRegister");
@@ -67,6 +71,11 @@ const Create = (): JSX.Element => {
       fn: handleChangeText,
     },
   ];
+
+  const gState = () => {
+    console.log("@gState");
+    console.log(store.getState());
+  };
 
   return (
     <LayoutAuth>
