@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button, Box, Paper, Grid, Typography, TextField } from "@mui/material";
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Box, Paper } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 import Routes from "../../../routes/routes";
 import AppTitle from "../../../components/AppTitle";
@@ -15,8 +15,9 @@ export interface inputType {
   type: string;
   name: string;
   default: string | number | boolean;
-  value: string | number | boolean;
+  value: string | number;
   fn: any;
+  options: (string | number)[];
 }
 
 const Create = (): JSX.Element => {
@@ -25,6 +26,7 @@ const Create = (): JSX.Element => {
   // useState
   const [inputTitle, setInputTitle] = useState<string>("");
   const [inputText, setInputText] = useState<string>("");
+  const [age, setAge] = useState<string>("None");
 
   // Input's Function
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,10 +35,12 @@ const Create = (): JSX.Element => {
   const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
+  const handleChangeAge = (e: SelectChangeEvent) => {
+    setAge(e.target.value);
+  };
 
   // Function that is arg of ModalWithButton
   const handleRegister = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("@handleRegister");
     axios
       .post(
         Routes.B_POST_CREATE,
@@ -60,15 +64,25 @@ const Create = (): JSX.Element => {
       type: "text",
       name: "title",
       default: "titleDefault",
-      value: inputText,
+      value: inputTitle,
       fn: handleChangeTitle,
+      options: [],
     },
     {
       type: "text",
       name: "text",
       default: "textDefault",
-      value: inputTitle,
+      value: inputText,
       fn: handleChangeText,
+      options: [],
+    },
+    {
+      type: "select",
+      name: "age",
+      default: "selectDefault",
+      value: age,
+      fn: handleChangeAge,
+      options: ["10's", "20's", "30's", "40's"],
     },
   ];
 
@@ -86,10 +100,13 @@ const Create = (): JSX.Element => {
           {inputSet.map((each: inputType) => {
             return (
               <InputWithLabel
+                type={each.type}
                 name={each.name}
                 defaultVal={each.default}
+                value={each.value}
                 key={each.name}
                 changeAction={each.fn}
+                options={each.options}
               />
             );
           })}
