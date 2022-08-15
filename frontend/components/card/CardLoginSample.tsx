@@ -10,6 +10,8 @@ import {
   CardContent,
   TextField,
 } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
 import { useRouter } from "next/router";
 import Routes from "../../routes/routes";
 import * as W_COMMON from "../../constant/word/common";
@@ -25,6 +27,7 @@ const CardLoginSample = (): JSX.Element => {
   // useState
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   /**
    * Validation
    */
@@ -47,10 +50,10 @@ const CardLoginSample = (): JSX.Element => {
     setPassword(e.target.value);
   };
   const handleLogin = () => {
+    setLoading(true);
     axios
       .get(Routes.SANCTUM, { withCredentials: true })
       .then((response) => {
-        // console.log(response);
         axios
           .post(
             Routes.LOGIN,
@@ -61,23 +64,21 @@ const CardLoginSample = (): JSX.Element => {
             { withCredentials: true }
           )
           .then((response) => {
-            // console.log(response);
             if (response.data.status === "login") {
-              console.log("@@login");
               dispatch({ type: "AUTH" });
               router.push(Routes.F_POST_DASHBOARD);
             }
           })
           .catch((response) => {
             // ERROR PROGRAM
-            console.log(response);
             dispatch({ type: "UNAUTH" });
+            setLoading(false);
           });
       })
       .catch((response) => {
         // ERROR PROGRAM
-        console.log(response);
         dispatch({ type: "UNAUTH" });
+        setLoading(false);
       });
   };
 
@@ -118,17 +119,16 @@ const CardLoginSample = (): JSX.Element => {
             mt: 3,
           }}
         >
-          <Button
-            fullWidth
+          <LoadingButton
             size="large"
-            variant="outlined"
             color="primary"
-            onClick={() => {
-              handleLogin();
-            }}
+            onClick={() => handleLogin()}
+            loading={loading}
+            variant="outlined"
+            fullWidth
           >
             {W_COMMON.LOGIN}
-          </Button>
+          </LoadingButton>
         </Box>
       </CardContent>
     </Card>
