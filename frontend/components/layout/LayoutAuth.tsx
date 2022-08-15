@@ -24,7 +24,6 @@ const LayoutAuth = (props: Props): JSX.Element => {
   const login = useSelector<LoginStatus>((state) => state.login);
 
   useEffect(() => {
-    // console.log("@ConfirmState: ", store.getState());
     if (login === 0) {
       console.log("@in");
       axios

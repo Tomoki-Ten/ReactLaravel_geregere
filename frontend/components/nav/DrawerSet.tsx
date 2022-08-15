@@ -14,16 +14,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import StarBorder from "@mui/icons-material/StarBorder";
-import { extractEventHandlers } from "@mui/base";
-import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
+import HeaderContent from "./header/HeaderContent";
 
 const drawerWidth = 220;
 
@@ -211,9 +208,8 @@ export default function ResponsiveDrawer(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
+          <HeaderContent />
+          {/*  */}
         </Toolbar>
       </AppBar>
       <Box
