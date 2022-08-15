@@ -65,7 +65,7 @@ const CardLoginSample = (): JSX.Element => {
             if (response.data.status === "login") {
               console.log("@@login");
               dispatch({ type: "AUTH" });
-              router.push(Routes.P_POST_DASHBOARD);
+              router.push(Routes.F_POST_DASHBOARD);
             }
           })
           .catch((response) => {

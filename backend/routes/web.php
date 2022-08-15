@@ -24,11 +24,13 @@ Route::get('/test', function () {
     return 'test';
 });
 
-/* LOGIN */
+/* LOGOUT */
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'auth'], function() {
-    /* CONFIRM */
+    /* LOGOUT */
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    /* AUTH CONFIRM */
     Route::get('/confirm', [AuthController::class, 'confirm'])->name('confirm');
 
     /**

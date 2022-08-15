@@ -48,11 +48,11 @@ export default function ResponsiveDrawer(props: Props) {
       menu: [
         {
           page: "List",
-          url: Routes.P_POST_DASHBOARD,
+          url: Routes.F_POST_DASHBOARD,
         },
         {
           page: "Create",
-          url: Routes.P_POST_CREATE,
+          url: Routes.F_POST_CREATE,
         },
       ],
     },

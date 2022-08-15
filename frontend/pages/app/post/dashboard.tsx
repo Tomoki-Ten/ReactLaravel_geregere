@@ -28,28 +28,24 @@ const Dashboard = (): JSX.Element => {
   const [posts, setPosts] = useState<Post[]>([]);
   // useEffect
   useEffect(() => {
-    // console.log("@Effect");
     axios
       .get(Routes.POST_LIST, { withCredentials: true })
       .then((response) => {
-        // console.log("@get:then");
-        // console.log(response);
+        // console.log("@get:then", response);
         setPosts(response.data);
       })
       .catch((response) => {
-        // console.log("@get:catch");
-        // console.log(response);
+        // console.log("@get:catch", response);
       });
   }, []);
 
   // Read
   const readThisPost = (post: Post) => {
-    console.log("readThisPost");
-    console.log(post);
+    console.log("@readThisPost: ", post);
   };
   // Delete
   const deletePost = (post_id: number) => {
-    console.log("deletePost");
+    console.log("@deletePost: ", post_id);
     let updated_posts: Post[] = posts.filter((exist_post) => {
       if (post_id != exist_post.id) {
         return exist_post;

@@ -39,7 +39,7 @@ const Create = (): JSX.Element => {
     console.log("@handleRegister");
     axios
       .post(
-        Routes.POST_CREATE,
+        Routes.B_POST_CREATE,
         {
           name: 0,
           title: inputTitle,

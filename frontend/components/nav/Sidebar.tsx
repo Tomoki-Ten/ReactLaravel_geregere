@@ -34,11 +34,11 @@ const Sidebar = (props: Object): JSX.Element => {
       methods: [
         {
           text: "List",
-          url: Routes.P_USER_DASHBOARD,
+          url: Routes.F_USER_DASHBOARD,
         },
         {
           text: "Create",
-          url: Routes.P_USER_CREATE,
+          url: Routes.F_USER_CREATE,
         },
       ],
     },
@@ -47,11 +47,11 @@ const Sidebar = (props: Object): JSX.Element => {
       methods: [
         {
           text: "List",
-          url: Routes.P_POST_DASHBOARD,
+          url: Routes.F_POST_DASHBOARD,
         },
         {
           text: "Create",
-          url: Routes.P_POST_CREATE,
+          url: Routes.F_POST_CREATE,
         },
       ],
     },

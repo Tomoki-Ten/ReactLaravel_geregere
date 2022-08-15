@@ -36,4 +36,16 @@ class AuthController extends Controller
         }
         return response()->json(['status' => 'Unauthorized'], 401);
     }
+
+    public function logout(Request $request)
+    {
+        // Invalid User Accessed
+        if (!Auth::check()) {
+            return response()->json(['status' => 'Not Found'], 404);
+        } 
+        Auth::guard('web')->logout();
+        // Auth::logout();
+        // Auth::guard('sanctum')->user()->tokens()->delete();
+        return response()->json(['status' => 'Logout'], 200);
+    }
 }

@@ -1,7 +1,13 @@
 import { useState } from "react";
+import axios from "axios";
 import { Typography, Grid, Button, Menu, MenuItem } from "@mui/material";
+import { useRouter } from "next/router";
+import Routes from "../../../routes/routes";
 
 const HeaderContent = () => {
+  // Router
+  const router = useRouter();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -9,6 +15,19 @@ const HeaderContent = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    console.log("@handleLogout");
+    axios
+      .post(Routes.LOGOUT, {}, { withCredentials: true })
+      .then((response) => {
+        // Redirect
+        router.push(Routes.INDEX);
+      })
+      .catch((response) => {
+        console.log("@catch: ", response);
+      });
   };
 
   return (
@@ -42,7 +61,7 @@ const HeaderContent = () => {
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </Typography>
       </Grid>
