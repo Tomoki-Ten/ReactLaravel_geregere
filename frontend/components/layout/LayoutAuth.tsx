@@ -8,18 +8,17 @@ import axios from "axios";
 // Developper
 import DrawerSet from "../nav/DrawerSet";
 import Routes from "../../routes/routes";
-
-import store, { LoginStatus } from "../../store/index";
-// import store from "../../store/index";
+// Redux
+import { LoginStatus } from "../../store/login";
 
 export interface Props {
   children: React.ReactNode;
 }
 
 const LayoutAuth = (props: Props): JSX.Element => {
-  // const header_contents: string = "Applicaton Header";
+  // Router
   const router = useRouter();
-  /* Redux */
+  // Redux
   const dispatch = useDispatch();
   const login = useSelector<LoginStatus>((state) => state);
   // const login = useSelector<LoginStatus>((state) => state.login);

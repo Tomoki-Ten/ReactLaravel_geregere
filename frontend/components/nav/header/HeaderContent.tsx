@@ -4,13 +4,20 @@ import axios from "axios";
 import { Typography, Grid, Button, Menu, MenuItem } from "@mui/material";
 import Routes from "../../../routes/routes";
 import { useSelector } from "react-redux";
-import store, { LoginStatus } from "../../../store/index";
+import { LoginStatus } from "../../../store/login";
+import store from "../../../store/index";
 
 const HeaderContent = () => {
   // Router
   const router = useRouter();
   // Redux
-  const userName = useSelector<LoginStatus>((state) => state.user.name);
+  console.log("@here");
+  console.log(store.getState());
+  const userName = useSelector<LoginStatus>(
+    (state) => state.LoginStateReducer.user.name
+  );
+  console.log("@userName: ", userName);
+  // state.user.name
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

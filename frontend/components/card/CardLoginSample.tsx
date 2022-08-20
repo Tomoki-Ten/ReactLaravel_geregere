@@ -1,22 +1,12 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { LoginStatus } from "../../store";
+import { useDispatch } from "react-redux";
 import axios from "axios";
-import {
-  Box,
-  Button,
-  Card,
-  CardMedia,
-  CardContent,
-  TextField,
-} from "@mui/material";
+import { Box, Card, CardMedia, CardContent, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-import SaveIcon from "@mui/icons-material/Save";
 import { useRouter } from "next/router";
 import Routes from "../../routes/routes";
 import * as W_COMMON from "../../constant/word/common";
 import * as W_ERROR from "../../constant/word/error";
-
 import store from "../../store/index";
 
 const CardLoginSample = (): JSX.Element => {

@@ -209,7 +209,6 @@ export default function ResponsiveDrawer(props: Props) {
             <MenuIcon />
           </IconButton>
           <HeaderContent />
-          {/*  */}
         </Toolbar>
       </AppBar>
       <Box
