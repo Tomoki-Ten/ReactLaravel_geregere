@@ -1,21 +1,15 @@
-// import { createStore } from "redux";
-
 export interface LoginStatus {
   // loginState?: any;
-  LoginStateReducer: {
-    login: number;
-    user: {
-      name: string;
-    };
+  login: number;
+  user: {
+    name: string;
   };
 }
 
 const initialState: LoginStatus = {
-  LoginStateReducer: {
-    login: 0,
-    user: {
-      name: "",
-    },
+  login: 0,
+  user: {
+    name: "Initial User Name",
   },
 };
 
@@ -36,20 +30,16 @@ const LoginStateReducer = (
     case "AUTH":
       return {
         // ...state,
-        LoginStateReducer: {
-          login: 1,
-          user: {
-            name: action.user.name ? action.user.name : "",
-          },
+        login: 1,
+        user: {
+          name: action.user.name,
         },
       };
     case "UNAUTH":
       return {
-        LoginStateReducer: {
-          login: 0,
-          user: {
-            name: "NO USER",
-          },
+        login: 0,
+        user: {
+          name: "NO USER",
         },
       };
     default:

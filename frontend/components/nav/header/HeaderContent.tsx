@@ -5,17 +5,17 @@ import { Typography, Grid, Button, Menu, MenuItem } from "@mui/material";
 import Routes from "../../../routes/routes";
 import { useSelector } from "react-redux";
 import { LoginStatus } from "../../../store/login";
-import store from "../../../store/index";
+import store, { AppState } from "../../../store/index";
 
 const HeaderContent = () => {
   // Router
   const router = useRouter();
   // Redux
-  console.log("@here");
-  console.log(store.getState());
-  const userName = useSelector<LoginStatus>(
-    (state) => state.LoginStateReducer.user.name
-  );
+  const userName = useSelector<LoginStatus>((state: AppState | any) => {
+    console.log("@in");
+    console.log(state);
+    return state.LoginState.user.name;
+  });
   console.log("@userName: ", userName);
   // state.user.name
 

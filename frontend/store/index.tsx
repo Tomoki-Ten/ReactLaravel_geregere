@@ -1,9 +1,12 @@
 import { combineReducers, createStore } from "redux";
-import LoginStateReducer from "./login";
+import LoginStateReducer, { LoginStatus } from "./login";
+
+export interface AppState {
+  LoginState: LoginStatus;
+}
 
 const rootReducer = combineReducers({
-  LoginStateReducer,
-  // loginState: LoginStateReducer,
+  LoginState: LoginStateReducer,
 });
 
 const store = createStore(rootReducer);

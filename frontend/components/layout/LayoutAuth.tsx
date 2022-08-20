@@ -10,6 +10,7 @@ import DrawerSet from "../nav/DrawerSet";
 import Routes from "../../routes/routes";
 // Redux
 import { LoginStatus } from "../../store/login";
+import { AppState } from "../../store/index";
 
 export interface Props {
   children: React.ReactNode;
@@ -20,7 +21,11 @@ const LayoutAuth = (props: Props): JSX.Element => {
   const router = useRouter();
   // Redux
   const dispatch = useDispatch();
-  const login = useSelector<LoginStatus>((state) => state);
+  const login = useSelector<LoginStatus>((state: AppState | any) => {
+    console.log("@buhi");
+    console.log(state);
+    return state.LoginState.login;
+  });
   // const login = useSelector<LoginStatus>((state) => state.login);
 
   useEffect(() => {
