@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import { Typography, Grid, Button, Menu, MenuItem } from "@mui/material";
-import { useRouter } from "next/router";
 import Routes from "../../../routes/routes";
+import { useSelector } from "react-redux";
+import store, { LoginStatus } from "../../../store/index";
 
 const HeaderContent = () => {
   // Router
   const router = useRouter();
+  // Redux
+  const userName = useSelector<LoginStatus>((state) => state.user.name);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -16,9 +20,10 @@ const HeaderContent = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  /**
+   * LOGOUT
+   */
   const handleLogout = () => {
-    console.log("@handleLogout");
     axios
       .post(Routes.LOGOUT, {}, { withCredentials: true })
       .then((response) => {
@@ -29,7 +34,6 @@ const HeaderContent = () => {
         console.log("@catch: ", response);
       });
   };
-
   return (
     <Grid container spacing={1} sx={{ justifyContent: "space-between" }}>
       <Grid item xs={3}>
@@ -48,7 +52,7 @@ const HeaderContent = () => {
             onClick={handleClick}
             sx={{ color: "white", fontWeight: "bold" }}
           >
-            UserName
+            {userName}
           </Button>
           <Menu
             id="basic-menu"

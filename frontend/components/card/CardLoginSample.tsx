@@ -17,6 +17,8 @@ import Routes from "../../routes/routes";
 import * as W_COMMON from "../../constant/word/common";
 import * as W_ERROR from "../../constant/word/error";
 
+import store from "../../store/index";
+
 const CardLoginSample = (): JSX.Element => {
   // Router
   const router = useRouter();
@@ -65,7 +67,10 @@ const CardLoginSample = (): JSX.Element => {
           )
           .then((response) => {
             if (response.data.status === "login") {
-              dispatch({ type: "AUTH" });
+              dispatch({
+                type: "AUTH",
+                user: { name: userName },
+              });
               router.push(Routes.F_POST_DASHBOARD);
             }
           })

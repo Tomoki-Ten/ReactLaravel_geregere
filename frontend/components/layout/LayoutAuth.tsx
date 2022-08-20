@@ -1,15 +1,15 @@
 // Like Libraries
 import { useEffect } from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import type { LoginStatus } from "../../store/index";
 import { Box, CircularProgress, Stack } from "@mui/material";
 import axios from "axios";
 // Developper
 import DrawerSet from "../nav/DrawerSet";
 import Routes from "../../routes/routes";
 
+import store, { LoginStatus } from "../../store/index";
 // import store from "../../store/index";
 
 export interface Props {
@@ -21,18 +21,21 @@ const LayoutAuth = (props: Props): JSX.Element => {
   const router = useRouter();
   /* Redux */
   const dispatch = useDispatch();
-  const login = useSelector<LoginStatus>((state) => state.login);
+  const login = useSelector<LoginStatus>((state) => state);
+  // const login = useSelector<LoginStatus>((state) => state.login);
 
   useEffect(() => {
     if (login === 0) {
-      console.log("@in");
       axios
         .get(Routes.AUTH_CONFIRM, { withCredentials: true })
         .then((response) => {
           // 認証、OK
-          dispatch({ type: "AUTH" });
+          console.log("@auth");
+          dispatch({ user: { name: "Love" }, type: "AUTH" });
+          // dispatch({ user: { name: "Love" } }, {type: "AUTH"});
         })
         .catch((response) => {
+          console.log("@unAuth");
           // 認証、失敗
           dispatch({ type: "UNAUTH" });
           router.replace(Routes.INDEX);
