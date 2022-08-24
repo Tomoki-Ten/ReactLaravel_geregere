@@ -9,7 +9,7 @@ export interface LoginStatus {
 const initialState: LoginStatus = {
   login: 0,
   user: {
-    name: "Initial User Name",
+    name: "",
   },
 };
 

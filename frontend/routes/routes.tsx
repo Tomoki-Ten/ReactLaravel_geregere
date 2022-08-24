@@ -32,6 +32,7 @@ class Routes {
   // Post
   static readonly F_POST_DASHBOARD: string = Routes.APP + "/post/Dashboard";
   static readonly F_POST_CREATE: string = Routes.APP + "/post/Create";
+  static readonly F_POST_LIST: string = Routes.APP + "/post/List";
 }
 
 export default Routes;

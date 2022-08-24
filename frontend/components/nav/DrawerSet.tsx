@@ -30,6 +30,7 @@ interface Props {
    * You won't need it on your project.
    */
   window?: () => Window;
+  children: React.ReactNode;
 }
 
 export default function ResponsiveDrawer(props: Props) {
@@ -40,6 +41,20 @@ export default function ResponsiveDrawer(props: Props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const [postOpen, setPostOpen] = useState(true);
+  const [userOpen, setUserOpen] = useState(true);
+  const [cardOpen, setCardOpen] = useState(true);
+
+  const handlePostClick = () => {
+    setPostOpen(!postOpen);
+  };
+  const handleUserClick = () => {
+    setUserOpen(!userOpen);
+  };
+  const handleCardClick = () => {
+    setCardOpen(!cardOpen);
+  };
+
   // Sidebar Contents
   let sidebarItems = [
     {
@@ -47,12 +62,16 @@ export default function ResponsiveDrawer(props: Props) {
       open: false,
       menu: [
         {
-          page: "List",
+          page: "Dashboard",
           url: Routes.F_POST_DASHBOARD,
         },
         {
           page: "Create",
           url: Routes.F_POST_CREATE,
+        },
+        {
+          page: "List",
+          url: Routes.F_POST_LIST,
         },
       ],
     },
@@ -70,120 +89,179 @@ export default function ResponsiveDrawer(props: Props) {
         },
       ],
     },
+    {
+      subject: "CARD",
+      open: false,
+      menu: [
+        {
+          page: "Home",
+          url: "#",
+        },
+        {
+          page: "List",
+          url: "#",
+        },
+      ],
+    },
   ];
 
-  const [postOpen, setPostOpen] = useState(true);
-  const [userOpen, setUserOpen] = useState(true);
-
-  const handlePostClick = () => {
-    setPostOpen(!postOpen);
-  };
-  const handleUserClick = () => {
-    setUserOpen(!userOpen);
-  };
-
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        <ListItem
-          key={sidebarItems[0].subject}
-          disablePadding
-          sx={{ display: "block" }}
-        >
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              px: 2.5,
-            }}
-            onClick={() => handlePostClick()}
+  const DrawerBody = () => {
+    return (
+      <div>
+        <Toolbar />
+        <Divider />
+        <List>
+          {/* TODO: Loop Object */}
+          {/* ========== Post ========== */}
+          <ListItem
+            key={sidebarItems[0].subject}
+            disablePadding
+            sx={{ display: "block" }}
           >
-            <ListItemIcon
+            <ListItemButton
               sx={{
-                minWidth: 0,
-                mr: 3,
-                justifyContent: "center",
+                minHeight: 48,
+                px: 2.5,
               }}
+              onClick={() => handlePostClick()}
             >
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary={sidebarItems[0].subject} />
-            {postOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={postOpen} timeout="auto" unmountOnExit>
-            {sidebarItems[0].menu.map((each: any) => {
-              return (
-                <List
-                  key={`${sidebarItems[0].subject}_${each.page}`}
-                  component="div"
-                  disablePadding
-                >
-                  <Link href={each.url}>
-                    <ListItemButton sx={{ pl: 4 }} component="a">
-                      <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText primary={each.page} />
-                    </ListItemButton>
-                  </Link>
-                </List>
-              );
-            })}
-          </Collapse>
-        </ListItem>
-        <ListItem
-          key={sidebarItems[1].subject}
-          disablePadding
-          sx={{ display: "block" }}
-        >
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              px: 2.5,
-            }}
-            onClick={() => handleUserClick()}
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: 3,
+                  justifyContent: "center",
+                }}
+              >
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={sidebarItems[0].subject} />
+              {postOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={postOpen} timeout="auto" unmountOnExit>
+              {sidebarItems[0].menu.map((each: any) => {
+                return (
+                  <List
+                    key={`${sidebarItems[0].subject}_${each.page}`}
+                    component="div"
+                    disablePadding
+                  >
+                    <Link href={each.url}>
+                      <ListItemButton sx={{ pl: 4 }} component="a">
+                        <ListItemIcon>
+                          <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText primary={each.page} />
+                      </ListItemButton>
+                    </Link>
+                  </List>
+                );
+              })}
+            </Collapse>
+          </ListItem>
+          {/* ========== User ========== */}
+          <ListItem
+            key={sidebarItems[1].subject}
+            disablePadding
+            sx={{ display: "block" }}
           >
-            <ListItemIcon
+            <ListItemButton
               sx={{
-                minWidth: 0,
-                mr: 3,
-                justifyContent: "center",
+                minHeight: 48,
+                px: 2.5,
               }}
+              onClick={() => handleUserClick()}
             >
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary={sidebarItems[1].subject} />
-            {userOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={userOpen} timeout="auto" unmountOnExit>
-            {sidebarItems[1].menu.map((each: any) => {
-              return (
-                <List
-                  key={`${sidebarItems[1].subject}_${each.page}`}
-                  component="div"
-                  disablePadding
-                >
-                  <Link href={each.url}>
-                    <ListItemButton
-                      sx={{ pl: 4 }}
-                      component="a"
-                      href={each.url}
-                    >
-                      <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText primary={each.page} />
-                    </ListItemButton>
-                  </Link>
-                </List>
-              );
-            })}
-          </Collapse>
-        </ListItem>
-      </List>
-    </div>
-  );
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: 3,
+                  justifyContent: "center",
+                }}
+              >
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={sidebarItems[1].subject} />
+              {userOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={userOpen} timeout="auto" unmountOnExit>
+              {sidebarItems[1].menu.map((each: any) => {
+                return (
+                  <List
+                    key={`${sidebarItems[1].subject}_${each.page}`}
+                    component="div"
+                    disablePadding
+                  >
+                    <Link href={each.url}>
+                      <ListItemButton
+                        sx={{ pl: 4 }}
+                        component="a"
+                        href={each.url}
+                      >
+                        <ListItemIcon>
+                          <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText primary={each.page} />
+                      </ListItemButton>
+                    </Link>
+                  </List>
+                );
+              })}
+            </Collapse>
+          </ListItem>
+          {/* ========== Card ========== */}
+          <ListItem
+            key={sidebarItems[2].subject}
+            disablePadding
+            sx={{ display: "block" }}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                px: 2.5,
+              }}
+              onClick={() => handleCardClick()}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: 3,
+                  justifyContent: "center",
+                }}
+              >
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={sidebarItems[2].subject} />
+              {cardOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={cardOpen} timeout="auto" unmountOnExit>
+              {sidebarItems[2].menu.map((each: any) => {
+                return (
+                  <List
+                    key={`${sidebarItems[2].subject}_${each.page}`}
+                    component="div"
+                    disablePadding
+                  >
+                    <Link href={each.url}>
+                      <ListItemButton
+                        sx={{ pl: 4 }}
+                        component="a"
+                        href={each.url}
+                      >
+                        <ListItemIcon>
+                          <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText primary={each.page} />
+                      </ListItemButton>
+                    </Link>
+                  </List>
+                );
+              })}
+            </Collapse>
+          </ListItem>
+        </List>
+      </div>
+    );
+  };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -233,7 +311,7 @@ export default function ResponsiveDrawer(props: Props) {
             },
           }}
         >
-          {drawer}
+          <DrawerBody />
         </Drawer>
         <Drawer
           variant="permanent"
@@ -246,7 +324,7 @@ export default function ResponsiveDrawer(props: Props) {
           }}
           open
         >
-          {drawer}
+          <DrawerBody />
         </Drawer>
       </Box>
       <Box

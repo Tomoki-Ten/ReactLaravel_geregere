@@ -22,8 +22,6 @@ const LayoutAuth = (props: Props): JSX.Element => {
   // Redux
   const dispatch = useDispatch();
   const login = useSelector<LoginStatus>((state: AppState | any) => {
-    console.log("@buhi");
-    console.log(state);
     return state.LoginState.login;
   });
   // const login = useSelector<LoginStatus>((state) => state.login);
@@ -32,14 +30,14 @@ const LayoutAuth = (props: Props): JSX.Element => {
     if (login === 0) {
       axios
         .get(Routes.AUTH_CONFIRM, { withCredentials: true })
-        .then((response) => {
+        .then((res) => {
           // 認証、OK
-          console.log("@auth");
-          dispatch({ user: { name: "Love" }, type: "AUTH" });
-          // dispatch({ user: { name: "Love" } }, {type: "AUTH"});
+          dispatch({
+            type: "AUTH",
+            user: { name: res.data.user.name },
+          });
         })
-        .catch((response) => {
-          console.log("@unAuth");
+        .catch((res) => {
           // 認証、失敗
           dispatch({ type: "UNAUTH" });
           router.replace(Routes.INDEX);

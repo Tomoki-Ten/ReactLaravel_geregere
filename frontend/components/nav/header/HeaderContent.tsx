@@ -12,12 +12,8 @@ const HeaderContent = () => {
   const router = useRouter();
   // Redux
   const userName = useSelector<LoginStatus>((state: AppState | any) => {
-    console.log("@in");
-    console.log(state);
     return state.LoginState.user.name;
   });
-  console.log("@userName: ", userName);
-  // state.user.name
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

@@ -1,4 +1,3 @@
-// Like Libraries
 import { Box } from "@mui/material";
 import {
   DataGrid,
@@ -8,8 +7,8 @@ import {
   jaJP,
 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// Developer
 import { Post } from "../../pages/app/post/Dashboard";
+import React from "react";
 
 interface Props {
   posts: Post[];
@@ -40,8 +39,14 @@ const columns: GridColDef[] = [
     flex: 1,
   },
 ];
-
+// Japanese
 const theme = createTheme({}, jaJP);
+
+// const handleClickCell = (e: React.MouseEvent<HTMLElement>): void => {
+// const handleClickCell = (e: React.ChangeEvent<HTMLDivElement>): void => {
+const handleClickCell = (e: MuiEvent<React.MouseEvent>): void => {
+  console.log("@handleClickCell: ", e);
+};
 
 const DataGridTable = (props: Props): JSX.Element => {
   // console.log("@props");
@@ -65,6 +70,8 @@ const DataGridTable = (props: Props): JSX.Element => {
           components={{
             Toolbar: GridToolbar,
           }}
+          // onRowClick={() => console.log("@onRowClicked")}
+          onCellClick={(e: MuiEvent<React.MouseEvent>) => handleClickCell(e)}
         />
       </ThemeProvider>
     </Box>

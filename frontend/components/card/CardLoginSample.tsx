@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import Routes from "../../routes/routes";
 import * as W_COMMON from "../../constant/word/common";
 import * as W_ERROR from "../../constant/word/error";
-import store from "../../store/index";
 
 const CardLoginSample = (): JSX.Element => {
   // Router

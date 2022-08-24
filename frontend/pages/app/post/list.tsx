@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+import axios from "axios";
+import Routes from "../../../routes/routes";
 import AppTitle from "../../../components/AppTitle";
+import Original from "../../../components/table/original/Original";
 import LayoutAuth from "../../../components/layout/LayoutAuth";
 import TBody from "../../../components/table/TBody";
 
@@ -33,52 +35,32 @@ const dummyPosts: Post[] = [
     bool: true,
     created_at: "2022-02-11",
   },
-  {
-    id: 2,
-    user: "UserName-01",
-    title: "Post Title 01",
-    text: "Text Exaple 01",
-    check: 1,
-    bool: true,
-    created_at: "2022-02-11",
-  },
 ];
 
 const List = (): JSX.Element => {
   const pageTitle: string = "Post List";
   const [posts, setPosts] = useState<Post[]>(dummyPosts);
 
+  useEffect(() => {
+    axios
+      .get(Routes.POST_LIST, { withCredentials: true })
+      .then((res) => {
+        console.log("@then: ", res);
+      })
+      .catch((res) => {
+        console.log("@catch: ", res);
+      });
+  }, []);
+
   // const deletePost = () => {};
-
   const readThisPost = () => {};
-
   const clickEvent = () => {};
 
   return (
     <LayoutAuth>
       <AppTitle page_title={pageTitle} />
-      <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">USER NAME</th>
-              <th scope="col">TITLE</th>
-              <th scope="col">TEXT</th>
-              <th scope="col">CHECK</th>
-              <th scope="col">BOOL</th>
-              <th scope="col">CREATED_AT</th>
-              <th scope="col">CONTROLER</th>
-            </tr>
-          </thead>
-          <TBody
-            posts={posts}
-            deletePost={undefined}
-            readThisPost={readThisPost}
-            clickEvent={clickEvent}
-          />
-        </table>
-      </div>
+      {/* TODO: BreadCrumb */}
+      <Original />
     </LayoutAuth>
   );
 };
