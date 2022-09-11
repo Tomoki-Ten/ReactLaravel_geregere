@@ -39,13 +39,13 @@ const HeaderContent = () => {
   };
   return (
     <Grid container spacing={1} sx={{ justifyContent: "space-between" }}>
-      <Grid item xs={3}>
+      <Grid item>
         <Typography variant="h6" noWrap component="div">
           {/* TODO: Constant Value Application Name */}
           ApplicationName
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item>
         <Typography variant="h6" noWrap component="div">
           <Button
             id="basic-button"

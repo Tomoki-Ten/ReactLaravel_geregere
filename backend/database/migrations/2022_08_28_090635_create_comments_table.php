@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id()->comment('ID');
 
-            $table->foreignId('user_id')->nullable()->comment('User ID');
+            $table->foreignId('post_id')->comment('POST ID');
 
             $table->string('title', 50)->comment('Title');
             $table->string('text', 256)->comment('Text');
-            $table->string('check', 100)->nullable()->comment('Check');
-            $table->boolean('bool')->nullable()->comment('Boolean');
-
+            
             $table->dateTime('created_at')->useCurrent()->comment('Created_At');
             $table->bigInteger('created_by')->nullable()->comment('Created_By');
             $table->dateTime('updated_at')->useCurrent()->comment('Updated_At');
@@ -30,7 +28,7 @@ return new class extends Migration
 
             // SoftDelete
             $table->softDeletes('deleted_at')->comment('Deleted_At');
-            $table->bigInteger('deleted_by')->nullable()->comment('Deleted_By');
+            $table->bigInteger('deleted_by')->nullable()->comment('Deleted_By'); 
         });
     }
 
@@ -41,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('comments');
     }
 };

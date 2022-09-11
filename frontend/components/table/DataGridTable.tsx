@@ -1,3 +1,6 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import {
   DataGrid,
@@ -8,7 +11,9 @@ import {
 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Post } from "../../pages/app/post/Dashboard";
-import React from "react";
+import Routes from "../../routes/routes";
+
+import store from "../../store/index";
 
 interface Props {
   posts: Post[];
@@ -42,21 +47,35 @@ const columns: GridColDef[] = [
 // Japanese
 const theme = createTheme({}, jaJP);
 
-// const handleClickCell = (e: React.MouseEvent<HTMLElement>): void => {
-// const handleClickCell = (e: React.ChangeEvent<HTMLDivElement>): void => {
-const handleClickCell = (e: MuiEvent<React.MouseEvent>): void => {
-  console.log("@handleClickCell: ", e);
-};
-
 const DataGridTable = (props: Props): JSX.Element => {
-  // console.log("@props");
-  // console.log(props);
-  // console.log(props.posts);
+  const { posts } = props;
+  // useRouter
+  const router = useRouter();
+  // Redux
+  const dispatch = useDispatch();
+
+  // const handleClickCell = (e: React.ChangeEvent<HTMLDivElement>): void => {
+  const handleClickCell = (e: React.MouseEvent<HTMLElement>) => {
+    console.log("@@@handleClickCell: ", e);
+
+    dispatch({
+      type: "KEEP",
+      postData: {
+        id: e.row.id,
+        title: e.row.title,
+        text: e.row.text,
+        comments: e.row.comments,
+      },
+    });
+    // console.log(store.getState());
+    router.push(Routes.F_POST_DETAIL);
+  };
+
   return (
     <Box sx={{ height: 400, width: "100%" }}>
       <ThemeProvider theme={theme}>
         <DataGrid
-          rows={props.posts}
+          rows={posts}
           columns={columns}
           // pageSize={2}
           // autoPageSize
@@ -70,8 +89,9 @@ const DataGridTable = (props: Props): JSX.Element => {
           components={{
             Toolbar: GridToolbar,
           }}
-          // onRowClick={() => console.log("@onRowClicked")}
-          onCellClick={(e: MuiEvent<React.MouseEvent>) => handleClickCell(e)}
+          // onRowClick={handleClickCell}
+          onCellClick={(e) => handleClickCell(e)}
+          // onCellClick={(e: MuiEvent<React.MouseEvent>) => handleClickCell(e)}
         />
       </ThemeProvider>
     </Box>

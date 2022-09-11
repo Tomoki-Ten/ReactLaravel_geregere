@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { Box, Paper } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 
@@ -22,7 +23,8 @@ export interface inputType {
 
 const Create = (): JSX.Element => {
   const page_title: string = "Create Page";
-
+  // Router
+  const router = useRouter();
   // useState
   const [inputTitle, setInputTitle] = useState<string>("");
   const [inputText, setInputText] = useState<string>("");
@@ -56,6 +58,7 @@ const Create = (): JSX.Element => {
       })
       .catch((response) => {
         console.log("@register: catch: ", response);
+        router.replace(Routes.INDEX);
       });
   };
 
@@ -86,7 +89,7 @@ const Create = (): JSX.Element => {
     },
   ];
 
-  const gState = () => {
+  const getState = () => {
     console.log("@gState");
     console.log(store.getState());
   };

@@ -37,7 +37,8 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'auth'], function() 
      * POST
      */
     Route::group(['prefix' => 'post'], function() {
-        Route::get('/list', [PostController::class, 'list'])->name('list');
+        Route::get('/list', [PostController::class, 'list'])->name('getList');
+        Route::post('/list', [PostController::class, 'list'])->name('postList');
         Route::post('/create',   [PostController::class, 'create'])->name('create');
     });
 

@@ -11,7 +11,7 @@ const AppTitle = (props: Props): JSX.Element => {
       variant="h4"
       component="div"
       gutterBottom
-      mb={3}
+      mb={2}
       sx={{ fontWeight: "bold" }}
     >
       {page_title}

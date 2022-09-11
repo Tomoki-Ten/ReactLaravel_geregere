@@ -9,18 +9,20 @@ import {
 } from "@mui/material";
 import Select from "@mui/material/Select";
 
-interface Props {
+export interface InputWithLabelProps {
   type: string;
+  className?: string;
   name: string;
   defaultVal?: string | number | boolean;
-  // key: string;
+  key?: string;
   value: string | number;
   changeAction?: any;
-  options: (string | number)[];
+  options?: (string | number)[];
 }
 
-const InputWithLabel = (props: Props): JSX.Element => {
-  const { type, name, defaultVal, value, changeAction, options } = props;
+const InputWithLabel = (props: InputWithLabelProps): JSX.Element => {
+  const { type, className, name, defaultVal, value, changeAction, options } =
+    props;
 
   // Replace to Library
   const firstChar = name.charAt(0).toUpperCase();
@@ -32,6 +34,7 @@ const InputWithLabel = (props: Props): JSX.Element => {
       case "text":
         return (
           <TextField
+            className={className}
             id={name}
             label={nameDisplayed}
             size="small"
@@ -47,6 +50,7 @@ const InputWithLabel = (props: Props): JSX.Element => {
             <InputLabel id="demo-select-small">Age</InputLabel>
             <Select
               labelId={nameDisplayed}
+              className={className}
               id={name}
               label="Age"
               value={value}
@@ -55,11 +59,12 @@ const InputWithLabel = (props: Props): JSX.Element => {
               <MenuItem value="None" key="None">
                 <em>None</em>
               </MenuItem>
-              {options.map((m) => (
-                <MenuItem value={m} key={m}>
-                  {m}
-                </MenuItem>
-              ))}
+              {options &&
+                options.map((m) => (
+                  <MenuItem value={m} key={m}>
+                    {m}
+                  </MenuItem>
+                ))}
             </Select>
           </FormControl>
         );

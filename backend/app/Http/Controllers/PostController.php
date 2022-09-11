@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -11,13 +12,26 @@ class PostController extends Controller
      * List
      * @return
      */
-    public function list()
+    public function list(Request $request)
     {
         \Log::debug("@list");
-        $model = new Post();
-        $post = $model->query()->select('*')->get();
-        \Log::debug($post);
-        return $post;
+        \Log::debug($request);
+        try {
+            $model = new Post();
+            // \Log::debug("@here");
+            // $post = DB::table('posts')
+            //     ->select('*')
+            //     ->get();
+            $post = $model->allWithCommentNotTrushed(isset($request->inputSearch) ? $request->inputSearch : []);
+            \Log::debug("@ret: post");
+            \Log::debug($post);
+            return response()->json(['posts' => $post], 200);
+
+        } catch(\Exception $e) {
+            \Log::debug("@Error: " . $e->getMessage());
+            \Log::error("@ERROR: " . $e->getMessage());
+            return response()->json(['posts' => [], 'status' => 'Failed'], 200);
+        }
     }
     
     /**
