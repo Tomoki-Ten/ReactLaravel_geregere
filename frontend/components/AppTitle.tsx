@@ -8,10 +8,10 @@ const AppTitle = (props: Props): JSX.Element => {
   const { page_title } = props;
   return (
     <Typography
-      variant="h4"
+      variant="h5"
       component="div"
       gutterBottom
-      mb={2}
+      mb={1}
       sx={{ fontWeight: "bold" }}
     >
       {page_title}

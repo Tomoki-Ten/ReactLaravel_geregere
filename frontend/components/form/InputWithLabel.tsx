@@ -72,7 +72,7 @@ const InputWithLabel = (props: InputWithLabelProps): JSX.Element => {
   };
 
   return (
-    <Grid container spacing={3} key={name} sx={{ pb: 3 }}>
+    <Grid container spacing={3} key={name} sx={{ pb: 2 }}>
       <Grid item xs={3}>
         <Typography
           variant="h6"

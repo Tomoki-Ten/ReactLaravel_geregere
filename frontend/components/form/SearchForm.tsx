@@ -51,10 +51,10 @@ const SearchForm = (props: Props) => {
 
   return (
     <Box mb={3}>
-      <Paper sx={{ padding: "20px 0" }} variant="outlined">
+      <Paper sx={{ py: 2 }} variant="outlined">
         {cols.map((col: InputWithLabelProps, index: number) => {
           return (
-            <Grid sx={{ margin: "0 20px" }} key={col.key}>
+            <Grid sx={{ mx: 2 }} key={col.key}>
               <InputWithLabel
                 type={col.type}
                 className="search-form"

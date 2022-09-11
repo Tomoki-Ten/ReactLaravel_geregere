@@ -40,13 +40,6 @@ const Dashboard = (): JSX.Element => {
   }, []);
 
   const cols: InputWithLabelProps[] = [
-    // {
-    //   type: "text",
-    //   name: "id",
-    //   value: "",
-    //   key: "id",
-    //   options: [],
-    // },
     {
       type: "text",
       name: "title",
@@ -63,14 +56,11 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <LayoutAuth>
-      <div className="w-100" style={{ height: "100vh", overflow: "scroll" }}>
+      <Box component="div" sx={{ height: "100%", pt: 5, mt: 3 }}>
         <AppTitle page_title={page_title} />
-        {/* TODO: Search Form */}
-        <Box>
-          <SearchForm cols={cols} setPosts={setPosts} />
-          <DataGridTable posts={posts} />
-        </Box>
-      </div>
+        <SearchForm cols={cols} setPosts={setPosts} />
+        <DataGridTable posts={posts} />
+      </Box>
     </LayoutAuth>
   );
 };

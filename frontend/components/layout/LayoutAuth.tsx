@@ -47,8 +47,8 @@ const LayoutAuth = (props: Props): JSX.Element => {
 
   if (login) {
     return (
-      // <Box component="div" sx={{ height: "100vh", width: "100%", pb: 1 }}>
-      <Box component="div" sx={{ height: "100%", width: "100%", pb: 1 }}>
+      // <Box component="div" sx={{ height: "100%", width: "100%", pb: 1 }}>
+      <Box component="div" sx={{ height: "100vh", width: "100%", pb: 1 }}>
         <Head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta

@@ -26,17 +26,36 @@ const Detail = (): JSX.Element => {
   const postData: PostData = useSelector<PostData>((state: AppState) => {
     return state.PostDataState;
   });
+
+  // Textarea Style
+  const textStyle = {
+    whiteSpace: "pre-wrap",
+    wordWrap: "break-word",
+    px: 2,
+  };
+
   // ControlButtons
+  const handleClickDelete = () => {
+    console.log("@delete");
+    router.push(Routes.F_POST_DASHBOARD);
+  };
+
+  const handleClickEdit = () => {
+    console.log("@edit");
+    router.push(Routes.F_POST_DASHBOARD);
+  };
   const controlButtonsObj = [
     {
       type: "edit",
       display: true,
       bgcolor: "#76ff03",
+      clickAction: handleClickEdit,
     },
     {
       type: "delete",
       display: true,
       bgcolor: "#ff9800",
+      clickAction: handleClickDelete,
     },
   ];
   const switchIcon = (type: string) => {
@@ -48,18 +67,12 @@ const Detail = (): JSX.Element => {
     }
   };
 
-  const textStyle = {
-    whiteSpace: "pre-wrap",
-    wordWrap: "break-word",
-    px: 2,
-  };
-
   return (
     <LayoutAuth>
-      <Box sx={{ height: "100%" }}>
-        {/* <AppTitle page_title={pageTitle} /> */}
-        {/* Post */}
+      <Box sx={{ height: "100%", pt: 5, mt: 3 }}>
         <Paper elevation={3} sx={{ p: 1, mb: 1 }}>
+          {/* <AppTitle page_title={pageTitle} /> */}
+          {/* Post */}
           <Box component="div">
             <Box
               component="div"
@@ -73,9 +86,12 @@ const Detail = (): JSX.Element => {
               {postData.id !== 0 && (
                 <Stack direction="row">
                   {controlButtonsObj.map((obj) => {
-                    console.log("@obj: ", obj);
                     return (
-                      <IconButton aria-label={obj.type} key={obj.type}>
+                      <IconButton
+                        aria-label={obj.type}
+                        key={obj.type}
+                        onClick={obj.clickAction}
+                      >
                         <Avatar sx={{ bgcolor: obj.bgcolor }}>
                           {switchIcon(obj.type)}
                         </Avatar>
@@ -126,13 +142,9 @@ const Detail = (): JSX.Element => {
             ) : (
               postData.comments.map((each: CommentType) => {
                 return (
-                  <>
+                  <Box component="div" key={each.comment_id}>
                     <Divider component="div" />
-                    <Box
-                      component="div"
-                      key={each.comment_id}
-                      sx={{ px: 2, my: 2 }}
-                    >
+                    <Box component="div" sx={{ px: 2, my: 2 }}>
                       <Box component="div">
                         <Typography component="div" variant="h6">
                           Title:
@@ -150,7 +162,7 @@ const Detail = (): JSX.Element => {
                         </Typography>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               })
             )}

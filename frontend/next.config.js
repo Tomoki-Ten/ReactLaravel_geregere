@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+
 // const nextConfig = {
 //   reactStrictMode: true,
 // };
+// module.exports = nextConfig;
 
 // module.exports = {
 //   webpackDevMiddleware: (config) => {
@@ -26,5 +28,3 @@ module.exports = {
   //   CONFIG: process.env.TEST_VARIABLE,
   // },
 };
-
-// module.exports = nextConfig;

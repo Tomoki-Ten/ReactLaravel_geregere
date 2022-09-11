@@ -22,7 +22,7 @@ export interface inputType {
 }
 
 const Create = (): JSX.Element => {
-  const page_title: string = "Create Page";
+  const page_title: string = "Create: Page";
   // Router
   const router = useRouter();
   // useState
@@ -89,15 +89,10 @@ const Create = (): JSX.Element => {
     },
   ];
 
-  const getState = () => {
-    console.log("@gState");
-    console.log(store.getState());
-  };
-
   return (
     <LayoutAuth>
-      <AppTitle page_title={page_title} />
-      <Box component="div">
+      <Box component="div" sx={{ height: "100%", width: "100%", pt: 5, mt: 3 }}>
+        <AppTitle page_title={page_title} />
         <Paper elevation={3} sx={{ p: 3 }}>
           {/* Inputs */}
           {inputSet.map((each: inputType) => {
