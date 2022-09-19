@@ -37,12 +37,22 @@ const Detail = (): JSX.Element => {
   // ControlButtons
   const handleClickDelete = () => {
     console.log("@delete");
-    router.push(Routes.F_POST_DASHBOARD);
+    router.push({
+      pathname: Routes.F_POST_SIMPLECONFIRM,
+      query: {
+        type: "delete",
+      },
+    });
   };
 
   const handleClickEdit = () => {
     console.log("@edit");
-    router.push(Routes.F_POST_DASHBOARD);
+    router.push({
+      pathname: Routes.F_POST_SIMPLECONFIRM,
+      query: {
+        type: "edit",
+      },
+    });
   };
   const controlButtonsObj = [
     {
